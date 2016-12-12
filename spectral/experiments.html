@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Experiments</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1><a href="index.html">Team 16</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="index.html">Home</a></li>
+											<li><a href="about.html">About</a></li>
+											<li><a href="requirements.html">Requirements</a></li>
+											<li><a href="experiments.html">Experiments</a></li>
+											<li><a href="research.html">Research</a></li>
+											<li><a href="progress.html">Progress</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
+				<!-- Main -->
+					<article id="main">
+						<header>
+							<h2>Our experiments</h2>
+						</header>
+						<section class="wrapper style5">
+							<h4 style="margin-left:5%;">Bitcoin experiments</h4>
+								<table style="width:90%; margin-left:5%;">
+								  <tr>
+								    <th>No</th>
+								    <th>Title</th> 
+								    <th>Details</th>
+								    <th>Results</th>
+								    <th>Done by</th>
+								    <th>Date</th>
+								  </tr>
+								  <tr>
+								    <td>1</td>
+								    <td>Creating a Bitcoin testnet</td> 
+								    <td>Created a bitcointestnet using block.io and getting bitocoins thanks to Faucets</td>
+								    <td>Succeeded</td>
+								    <td>Sadir</td>
+								    <td>22-11-16</td>
+								  </tr>
+								  <tr>
+								    <td>2</td>
+								    <td>Sending bitcoins between addressest</td> 
+								    <td>Sending bitcoins between 2 addresses thanks to the block.io API</td>
+								    <td>Succeeded</td>
+								    <td>Sadir</td>
+								    <td>23-11-16</td>
+								  </tr>
+								  <tr>
+								    <td>3.a</td>
+								    <td>Adding a document’s digest to the Blockchain</td> 
+								    <td>
+								    	Options are:
+											• Creating a
+											custom
+											address
+											• Using
+											OP_RETURN to insert the digest in the
+											transaction info.
+									</td>
+								    <td>Option 1 - failed Option 2 - still under experimentation</td>
+								    <td>Sadir</td>
+								    <td>26-11-16</td>
+								  </tr>
+								  <tr>
+								    <td>3.b</td>
+								    <td>Adding the document’s digest to the Blockchain</td> 
+								    <td>I tried doing so by sending bitcoins to the digest, which I considered to be an address.</td>
+								    <td>No results: Difficulties making transactions due to permission problems on my laptop</td>
+								    <td>Kristelle</td>
+								    <td>26-11-16</td>
+								  </tr>
+								  <tr>
+								    <td>4</td>
+								    <td>Create a digest of a document</td> 
+								    <td>Used python and the hashlib library in order to use an implementation of the md5 algorithm</td>
+								    <td>Succeeded</td>
+								    <td>Kristelle</td>
+								    <td>23-11-16</td>
+								  </tr>
+								  <tr>
+								    <td>5</td>
+								    <td>Demo Apache PdfBox </td> 
+								    <td>Attempted to use the pdfbox library from apache to digitally sign an existing pdf document</td>
+								    <td>No results</td>
+								    <td>Alex</td>
+								    <td>24-11-16</td>
+								  </tr>
+								  <tr>
+								    <td>6</td>
+								    <td>Upload a document in a block using OP_RETURN</td> 
+								    <td>Used bitcoind and a code downloaded from github to find the latest block created and upload the digest of a document in it</td>
+								    <td>Failed/ still working on the issues</td>
+								    <td>Kristelle</td>
+								    <td>10-12-16</td>
+								  </tr>
+							</table>
+							<h4 style="margin-left:5%;">Ethereum experiments</h4>
+							<table style="width:90%; margin-left:5%;">
+								  <tr>
+								    <th>No</th>
+								    <th>Title</th> 
+								    <th>Details</th>
+								    <th>Results</th>
+								    <th>Done by</th>
+								    <th>Date</th>
+								  </tr>
+								  <tr>
+								    <td>1</td>
+								    <td>Ethereum - Create a private node</td> 
+								    <td>Building a private node with an initial block, using the ethereum command line tools and a genesis json file.</td>
+								    <td>Succeeded</td>
+								    <td>Sadir</td>
+								    <td>30-11-16</td>
+								  </tr>
+								  <tr>
+								    <td>2</td>
+								    <td>Ethereum - Mine ethers on the testnet</td> 
+								    <td>Mining ethers thanks to the ethereum command line tools</td>
+								    <td>Success. 135 ETH mined</td>
+								    <td>Sadir</td>
+								    <td>30-11-16</td>
+								  </tr>
+								  <tr>
+								    <td>3</td>
+								    <td>Ethereum - Write and compile a smart contract</td> 
+								    <td>
+								    	Following the tutorial provided by ethereum, and writing a smart contract which greets you once you trigger it.
+									</td>
+								    <td>The contract succesfully compiles</td>
+								    <td>Sadir</td>
+								    <td>10-12-16</td>
+								  </tr>
+								  <tr>
+								    <td>4</td>
+								    <td>Ethereum - Deploy the smart contract</td> 
+								    <td>Uploading the smart contract to our private Blockchain.</td>
+								    <td>The contract was succesfully added to our private Blockchain</td>
+								    <td>Sadir</td>
+								    <td>10-12-16</td>
+								  </tr>
+								  <tr>
+								    <td>4</td>
+								    <td>Create a digest of a document</td> 
+								    <td>Used python and the hashlib library in order to use an implementation of the md5 algorithm</td>
+								    <td>Succeeded</td>
+								    <td>Kristelle</td>
+								    <td>23-11-16</td>
+								  </tr>
+								  <tr>
+								    <td>5</td>
+								    <td>Truffle - Building contracts suitable for our app </td> 
+								    <td>Adapting the truffle default programme to suit our app</td>
+								    <td>Still under experimentation - more research required</td>
+								    <td>Sadir</td>
+								    <td>10-12-16</td>
+								  </tr>
+							</table>
+						</div>
+					</section>
+				</article>
+
+				<!-- Footer -->
+					<footer id="footer"></footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
