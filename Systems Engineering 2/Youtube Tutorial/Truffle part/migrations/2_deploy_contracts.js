@@ -4,4 +4,5 @@ module.exports = function(deployer) {
   deployer.deploy(MetaCoin);
   deployer.deploy(People);
   deployer.deploy(BasicSign);
+  deployer.deploy(BestSign);
 };

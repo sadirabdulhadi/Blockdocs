@@ -231,13 +231,13 @@ var SolidityEvent = require("web3/lib/web3/event.js");
 
   Contract.new = function() {
     if (this.currentProvider == null) {
-      throw new Error("BasicSign error: Please call setProvider() first before calling new().");
+      throw new Error("BestSign error: Please call setProvider() first before calling new().");
     }
 
     var args = Array.prototype.slice.call(arguments);
 
     if (!this.unlinked_binary) {
-      throw new Error("BasicSign error: contract binary not set. Can't deploy new instance.");
+      throw new Error("BestSign error: contract binary not set. Can't deploy new instance.");
     }
 
     var regex = /__[^_]+_+/g;
@@ -256,7 +256,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         return name != arr[index + 1];
       }).join(", ");
 
-      throw new Error("BasicSign contains unresolved libraries. You must deploy and link the following libraries before you can deploy a new version of BasicSign: " + unlinked_libraries);
+      throw new Error("BestSign contains unresolved libraries. You must deploy and link the following libraries before you can deploy a new version of BestSign: " + unlinked_libraries);
     }
 
     var self = this;
@@ -297,7 +297,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
 
   Contract.at = function(address) {
     if (address == null || typeof address != "string" || address.length != 42) {
-      throw new Error("Invalid address passed to BasicSign.at(): " + address);
+      throw new Error("Invalid address passed to BestSign.at(): " + address);
     }
 
     var contract_class = this.web3.eth.contract(this.abi);
@@ -308,7 +308,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
 
   Contract.deployed = function() {
     if (!this.address) {
-      throw new Error("Cannot find deployed address: BasicSign not deployed or address not set.");
+      throw new Error("Cannot find deployed address: BestSign not deployed or address not set.");
     }
 
     return this.at(this.address);
@@ -353,7 +353,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "constant": false,
         "inputs": [
           {
-            "name": "nonce",
+            "name": "doc",
             "type": "string"
           }
         ],
@@ -371,18 +371,18 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "constant": false,
         "inputs": [
           {
-            "name": "nonce",
+            "name": "doc",
             "type": "string"
           }
         ],
         "name": "generateId",
         "outputs": [
           {
-            "name": "",
+            "name": "docID",
             "type": "bytes32"
           }
         ],
-        "payable": false,
+        "payable": true,
         "type": "function"
       },
       {
@@ -405,61 +405,14 @@ var SolidityEvent = require("web3/lib/web3/event.js");
       },
       {
         "constant": false,
-        "inputs": [],
-        "name": "SimpleSign",
-        "outputs": [],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": false,
         "inputs": [
           {
             "name": "docId",
             "type": "bytes32"
-          },
-          {
-            "name": "signId",
-            "type": "uint8"
           }
         ],
-        "name": "getSignDetails",
+        "name": "getDocumentSign",
         "outputs": [
-          {
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "docId",
-            "type": "bytes32"
-          }
-        ],
-        "name": "addSignature",
-        "outputs": [],
-        "payable": true,
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "docId",
-            "type": "bytes32"
-          }
-        ],
-        "name": "getDocumentDetails",
-        "outputs": [
-          {
-            "name": "organizer",
-            "type": "address"
-          },
           {
             "name": "count",
             "type": "uint256"
@@ -491,230 +444,36 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "function"
       },
       {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "docId",
-            "type": "bytes32"
-          },
-          {
-            "name": "index",
-            "type": "uint256"
-          }
-        ],
-        "name": "getDocumentSignature",
-        "outputs": [
-          {
-            "name": "value",
-            "type": "address"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "docId",
-            "type": "bytes32"
-          }
-        ],
-        "name": "removeDocument",
-        "outputs": [],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "docId",
-            "type": "bytes32"
-          }
-        ],
-        "name": "getSignsCount",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "payable": false,
-        "type": "fallback"
-      },
-      {
         "anonymous": false,
         "inputs": [
           {
-            "indexed": true,
-            "name": "from",
-            "type": "address"
-          },
-          {
             "indexed": false,
-            "name": "id",
+            "name": "out",
             "type": "bytes32"
           }
         ],
-        "name": "Created",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "name": "from",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "name": "docId",
-            "type": "bytes32"
-          }
-        ],
-        "name": "Signed",
+        "name": "Print",
         "type": "event"
       }
     ],
-    "unlinked_binary": "0x606060405234610000575b61061b806100186000396000f36060604052361561008d5760e060020a600035046302e85efe811461009f57806319a9c2f1146100ff5780632b2805db146101645780634ac7becf146101905780635598e5761461019f5780636dba4807146101ce5780638e4d0f40146101db57806393d6e7de1461020e578063be96d7b314610241578063c350184814610270578063f4ae17f514610282575b346100005761009d5b610000565b565b005b6100ed600480803590602001908201803590602001908080601f016020809104026020016040519081016040528093929190818152602001838380828437509496506102a495505050505050565b60408051918252519081900360200190f35b34610000576100ed600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284375094965061034895505050505050565b60408051918252519081900360200190f35b3461000057610174600435610385565b60408051600160a060020a039092168252519081900360200190f35b346100005761009d6103a0565b005b34610000576101746004356024356103bd565b60408051600160a060020a039092168252519081900360200190f35b61009d600435610408565b005b34610000576101eb6004356104ea565b60408051600160a060020a03909316835260208301919091528051918290030190f35b34610000576101eb600435610515565b60408051600160a060020a03909316835260208301919091528051918290030190f35b3461000057610174600435602435610537565b60408051600160a060020a039092168252519081900360200190f35b346100005761009d600435610578565b005b34610000576100ed600435610602565b60408051918252519081900360200190f35b60006102af82610348565b600081815260016020526040902054909150600160a060020a0316156102d457610000565b6000818152600160209081526040918290208054600160a060020a031916606060020a33808202919091049190911790915582518481529251600160a060020a03909116927fd24d824860e7f36c08df207d22094623f901c3a69631edd487e915e1fac5d41a92908290030190a25b919050565b600081604051808280519060200190808383829060006004602084601f0104600302600f01f150905001915050604051809103902090505b919050565b600160205260009081526040902054600160a060020a031681565b60008054600160a060020a031916606060020a338102041790555b565b60008281526001602081905260408220908101805483919060ff86169081101561000057906000526020600020900160005b508054600160a060020a0316935090505b505092915050565b60008181526001602081905260408220808201805492830180825591939290918281838015829011610469576000838152602090206104699181019083015b80821115610465578054600160a060020a0319168155600101610447565b5090565b5b505050916000526020600020900160005b50604080516020808201835233918290528354600160a060020a031916606060020a808402041790935581518781529151939450600160a060020a0316927f6ce43e3def6c459ff915b7e85f0988330a741ef8b79e90dee95a8a976918672a929181900390910190a25b505050565b6000818152600160208190526040909120805491810154600160a060020a0390921691905b50915091565b60008181526001602052604081208054600160a060020a031691905b50915091565b600082815260016020819052604082209081018054849081101561000057906000526020600020900160005b5054600160a060020a031691505b5092915050565b6000818152600160205260409020805433600160a060020a039081169116146105a057610000565b600082815260016020818152604083208054600160a060020a031916815591820180548482559084529083209192916105f9918101905b80821115610465578054600160a060020a0319168155600101610447565b5090565b5b5050505b5050565b600081815260016020819052604090912001545b91905056",
+    "unlinked_binary": "0x606060405234610000575b61028d806100186000396000f3606060405260e060020a600035046302e85efe811461004a57806319a9c2f1146100aa5780632b2805db1461010a5780636eac7c171461013657806393d6e7de14610158575b610000565b610098600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284375094965061018b95505050505050565b60408051918252519081900360200190f35b610098600480803590602001908201803590602001908080601f016020809104026020016040519081016040528093929190818152602001838380828437509496506101fd95505050505050565b60408051918252519081900360200190f35b346100005761011a600435610235565b60408051600160a060020a039092168252519081900360200190f35b3461000057610098600435610250565b60408051918252519081900360200190f35b346100005761016860043561026b565b60408051600160a060020a03909316835260208301919091528051918290030190f35b6000610196826101fd565b600081815260208190526040902054909150600160a060020a0316156101bb57610000565b6000818152602081905260409020805473ffffffffffffffffffffffffffffffffffffffff19166c01000000000000000000000000338102041790555b919050565b604080517f6861626962690000000000000000000000000000000000000000000000000000815290519081900360060190205b919050565b600060208190529081526040902054600160a060020a031681565b60008181526020819052604090206001810154905b50919050565b60008181526020819052604081208054600160a060020a031691905b5091509156",
     "events": {
-      "0x0ce3610e89a4bb9ec9359763f99110ed52a4abaea0b62028a1637e242ca2768b": {
+      "0x8528251299ede771e6157005ad82960c1e78e9118223b095bcd115c01754de49": {
         "anonymous": false,
         "inputs": [
           {
-            "indexed": true,
-            "name": "from",
-            "type": "address"
-          },
-          {
             "indexed": false,
-            "name": "id",
-            "type": "uint256"
-          }
-        ],
-        "name": "Created",
-        "type": "event"
-      },
-      "0x006409c471c01f75fa2c8509f25aae87aa4e1d13b3eda6dcf9cabd084c053265": {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "name": "from",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "name": "docId",
-            "type": "uint256"
-          },
-          {
-            "indexed": false,
-            "name": "singId",
-            "type": "uint8"
-          },
-          {
-            "indexed": false,
-            "name": "signType",
-            "type": "bytes16"
-          },
-          {
-            "indexed": false,
-            "name": "sign",
-            "type": "bytes"
-          }
-        ],
-        "name": "Signed",
-        "type": "event"
-      },
-      "0x9c28008789aa17fb944ae340e80ac3294bbc82fa236c00737b67b32c8ccee213": {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "name": "from",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "name": "docId",
-            "type": "uint256"
-          },
-          {
-            "indexed": false,
-            "name": "singId",
-            "type": "uint8"
-          },
-          {
-            "indexed": false,
-            "name": "signType",
-            "type": "bytes16"
-          }
-        ],
-        "name": "Signed",
-        "type": "event"
-      },
-      "0xf4b7ab5b8fc49d6d35d323cae6a96e1441b461f862dfc5aff92e806e2839b5b0": {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "name": "from",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "name": "docId",
-            "type": "uint256"
-          }
-        ],
-        "name": "Signed",
-        "type": "event"
-      },
-      "0xd24d824860e7f36c08df207d22094623f901c3a69631edd487e915e1fac5d41a": {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "name": "from",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "name": "id",
+            "name": "out",
             "type": "bytes32"
           }
         ],
-        "name": "Created",
-        "type": "event"
-      },
-      "0x6ce43e3def6c459ff915b7e85f0988330a741ef8b79e90dee95a8a976918672a": {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "name": "from",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "name": "docId",
-            "type": "bytes32"
-          }
-        ],
-        "name": "Signed",
+        "name": "Print",
         "type": "event"
       }
     },
-    "updated_at": 1487112297232,
+    "updated_at": 1487112297237,
     "links": {},
-    "address": "0x520eb1007b67d186d9b038c01303eb8bb4706d1d"
+    "address": "0x8d142d82a95422ca98476915c4cbf9335d622f21"
   }
 };
 
@@ -799,7 +558,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     Contract.links[name] = address;
   };
 
-  Contract.contract_name   = Contract.prototype.contract_name   = "BasicSign";
+  Contract.contract_name   = Contract.prototype.contract_name   = "BestSign";
   Contract.generated_with  = Contract.prototype.generated_with  = "3.2.0";
 
   // Allow people to opt-in to breaking changes now.
@@ -839,6 +598,6 @@ var SolidityEvent = require("web3/lib/web3/event.js");
   } else {
     // There will only be one version of this contract in the browser,
     // and we can use that.
-    window.BasicSign = Contract;
+    window.BestSign = Contract;
   }
 })();

@@ -6,19 +6,19 @@ contract BasicSign {
 
     event Created(
         address indexed from, //ethereum address
-        uint256 id
+        bytes32 id
     );
     event Signed(
         address indexed from, 
 //The indexed parameters for logged events will allow you to search for these events using the indexed parameters as filters.
-        uint256 docId,
-        uint8 singId, //256 bit unsigned integer
-        bytes16 signType //up to 16 bytes signtype
+        bytes32 docId
+        //uint8 singId, //256 bit unsigned integer
+        //bytes16 signType //up to 16 bytes signtype
         //bytes sign
     );
 
     address owner;
-    mapping (uint256 => Document) public documents;
+    mapping (bytes32 => Document) public documents;
 
     struct Document {
         address organizer;
@@ -27,7 +27,7 @@ contract BasicSign {
 
     struct Sign {
         address signer;
-        bytes16 signType;
+        //bytes16 signType;
         //bytes   sign;
     }
 
@@ -35,41 +35,51 @@ contract BasicSign {
         owner = msg.sender;
     }
 
-    function createDocument(uint256 nonce) payable returns (uint256 docId) {
+    function createDocument(string nonce) payable returns (bytes32 docId) {
         docId = generateId(nonce);
         if (documents[docId].organizer != 0) throw;
         documents[docId].organizer = msg.sender;
         Created(msg.sender, docId);
     }
 
-    function removeDocument(uint256 docId) {
+    function removeDocument(bytes32 docId) {
         Document doc = documents[docId];
         if (doc.organizer != msg.sender) throw;
         delete documents[docId];
     }
 
-    function addSignature(uint256 docId, bytes16 _type) payable{// bytes _sign
+    function addSignature(bytes32 docId) payable{// bytes _sign
         Document doc = documents[docId];
         //if (doc.organizer != msg.sender) throw;
         //if (doc.signs.length >= 0xFF) throw;
-        uint idx = doc.signs.push(Sign(msg.sender, _type));
-        Signed(msg.sender, docId, uint8(idx), _type);
+        uint idx = doc.signs.push(Sign(msg.sender));
+        Signed(msg.sender, docId);
     }
 
-    function getDocumentDetails(uint256 docId) returns (address organizer, uint count) {
+    function getDocumentDetails(bytes32 docId) returns (address organizer, uint count) {
         Document doc = documents[docId];
         organizer = doc.organizer;
         count = doc.signs.length;
     }
 
-    function getSignsCount(uint256 docId) returns (uint) {
+    function getDocumentSignature(bytes32 docId, uint256 index) returns (address value) {
+        Document doc = documents[docId];
+        value = doc.signs[index].signer;
+    }
+
+    function getDocumentOrganizer(bytes32 docId) returns (address organizer, uint count) {
+        Document doc = documents[docId];
+        organizer = doc.organizer;
+    }
+
+    function getSignsCount(bytes32 docId) returns (uint) {
         return documents[docId].signs.length;
     }
 
-    function getSignDetails(uint256 docId, uint8 signId) returns (address, bytes16) {
+    function getSignDetails(bytes32 docId, uint8 signId) returns (address) {
         Document doc = documents[docId];
         Sign s = doc.signs[signId];
-        return (s.signer, s.signType);
+        return (s.signer)
     }
 
     // function getSignData(uint256 docId, uint8 signId) returns (bytes) {
@@ -78,8 +88,9 @@ contract BasicSign {
     //     return s.sign;
     // }
 
-    function generateId(uint256 nonce) returns (uint256) {
-        return uint256(sha3(msg.sender, nonce));
+    function generateId(string nonce) returns (bytes32) {
+        //return uint256(sha3(msg.sender, nonce));
+        return sha3(nonce);
     }
 
     function () {
