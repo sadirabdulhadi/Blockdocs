@@ -1,0 +1,10 @@
+{
+  "build": "webpack",
+  "deploy": [
+    "BasicSign"
+  ],
+  "rpc": {
+    "host": "localhost",
+    "port": 8545
+  }
+}

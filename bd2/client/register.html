@@ -1,0 +1,59 @@
+<head></head>
+<body style="background-color:#00BFFF">
+
+{{> register}}
+
+</body>
+
+<template name='register'>
+	<div align="center">
+		<div class="square">
+			<div align="center">
+				<img src="/Untitled.png" style="width:50%;">
+			</div>
+		<form>
+			<div align="center" class="top">
+				<input class="background" onfocus="this.value = ''; this.style.color='white';" type="email" placeholder="Enter Email" name="username" required>
+			</div>
+			<div align="center">
+				<input class="background" onfocus="this.value = ''; this.style.color='white';" type="password" placeholder="Enter Password" name="password" required>
+			</div>
+		
+			<div align="center">
+				<input class="homebutton" type="submit" value="Register">
+			</div>
+		</form>
+			<div>
+				<a href="adminlogin.html" style="color:white;"><p class="link">Administration?</p></a>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name='login'>
+	<div align="center">
+		<div class="square">
+			<div align="center">
+				<img src="/Untitled.png" style="width:50%;">
+			</div>
+		<form>
+			<div align="center" class="top">
+				<input class="background" onfocus="this.value = ''; this.style.color='white';" type="email" placeholder="Enter Email" name="username" required>
+			</div>
+			<div align="center">
+				<input class="background" onfocus="this.value = ''; this.style.color='white';" type="password" placeholder="Enter Password" name="password" required>
+			</div>
+		
+			<div align="center">
+				<input class="homebutton" type="submit" value="Login">
+			</div>
+		</form>
+			<div>
+				<a href="adminlogin.html" style="color:white;"><p class="link">Administration?</p></a>
+			</div>
+		</div>
+	</div>
+</template>
+
+
+
