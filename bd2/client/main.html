@@ -1,0 +1,104 @@
+
+<head>
+<!--   <meta charset="utf-8">
+
+  <title>Blockdocs</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" type="text/css" href="main.css">
+<script src="dist/sweetalert.min.js"></script> 
+<link rel="stylesheet" type="text/css" href="dist/sweetalert.css"> -->
+</head>
+
+<body>
+
+<button class="logout">Logout</button>
+{{> click}}
+
+</body>
+
+<template name="click">
+    <h1>My Documents</h1>
+    <input type="file" id="myFile" multiple size="50" onchange="myFunction()">
+
+    <p id="demo"></p>
+    <button type="button" class="btnpdf" data-toggle="modal" data-target="#myModal">
+      Launch demo modal
+    </button>
+    {{> modal}}
+</template>
+
+<template name="modal">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+          </div>
+          <div class="modal-body">
+           <embed src="entrepreneurship.pdf" width="100%" height="375" type='application/pdf'>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btnclose" data-dismiss="modal">Close</button>
+            <!-- <button onclick="myFunction()" class="btnmodal">Request signature</button> -->
+            <button class="btnmodal delete-photo">Request signature</button>
+          </div>
+        </div>
+      </div>
+    </div>
+   <script>
+  // function myFunction() {
+  //     var x;
+  //     if (confirm("Are you sure you want to sign this document") == true) {
+  //         x = "";
+  //     } else {
+  //         x = "";
+  //     }
+  //     document.getElementById("demo").innerHTML = x;
+  // }
+
+   $('button.delete-photo').click(function() {
+      var photoId = $(this).attr("data-photo-id");
+      deletePhoto(photoId);
+    });
+
+    function deletePhoto(photoId) {
+      swal({
+        title: "Are you sure?", 
+        text: "Are you sure that you want to sign this document?", 
+        type: "warning",
+        showCancelButton: true,
+        closeOnConfirm: false,
+        confirmButtonText: "Yes, sign it!",
+        confirmButtonColor: "#ec6c62"
+      }, function() {
+        $.ajax({
+          url: "/api/photos/" + photoId,
+          type: "DELETE"
+        })
+        .done(function(data) {
+          swal("Signed!", "The file was successfully signed!", "success");
+        })
+        .error(function(data) {
+          swal("Oops", "We couldn't connect to the server!", "error");
+        });
+      });
+    }
+
+
+
+  </script> 
+
+</template>
+
+
