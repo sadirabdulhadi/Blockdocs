@@ -32,8 +32,4 @@ contract BestSign {
     }
 
 }
-
-ascent.atos.net/journey2020
-risks
-problems
-colors
+}

@@ -79,7 +79,7 @@ contract BasicSign {
     function getSignDetails(bytes32 docId, uint8 signId) returns (address) {
         Document doc = documents[docId];
         Sign s = doc.signs[signId];
-        return (s.signer)
+        return (s.signer); 
     }
 
     // function getSignData(uint256 docId, uint8 signId) returns (bytes) {
