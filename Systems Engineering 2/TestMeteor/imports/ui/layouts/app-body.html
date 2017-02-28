@@ -1,0 +1,23 @@
+<head>
+  
+</head>
+
+<template name="App_body">
+<div class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#">Blockdocs</a>
+  </div>
+  <div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Link</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      {{> loginButtons align="right"}}
+    </ul>
+  </div>
+</div>
+
+  {{> Template.dynamic template=main}}
+<h1> bye bye </h1>
+
+</template>
