@@ -29,3 +29,8 @@ cfs:standard-packages
 cfs:filesystem
 ostrio:meteor-root
 ethereum:web3
+cfs:gridfs
+kevohagan:sweetalert
+aldeed:delete-button
+cfs:graphicsmagick
+mrt:imagemagick
