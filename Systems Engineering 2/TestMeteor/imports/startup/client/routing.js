@@ -21,3 +21,4 @@ FlowRouter.route('/page2', {
     BlazeLayout.render('App_body', {main: 'page2'});
   }
 });
+
