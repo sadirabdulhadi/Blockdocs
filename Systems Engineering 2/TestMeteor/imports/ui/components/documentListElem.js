@@ -1,5 +1,5 @@
 import { Template } from 'meteor/templating';
-import { documentsdb } from '../api/documentsdb.js';
+import { documentsdb } from '../api/database.js';
  
 import './documentListElem.html';
  

@@ -1,6 +1,6 @@
 import './page1.html'
 import '../../api/common.js'
-import { documentsdb } from '../../../lib/documentsdb.js';
+import { documentsdb } from '../../../lib/database.js';
 import { Meteor } from 'meteor/meteor';
 
 //var Web3 = require('web3');
@@ -30,7 +30,27 @@ Template.page1.events({
       username: Meteor.user().emails[0].address
     });
     var depdep = ETHEREUM_CLIENT.eth.contract(PCabi).at(PCaddress);
-    console.log(depdep.createDocument("yolor"));
+    console.log(depdep.createDocument("gdjfd"));
     console.log(documentsdb.find({}).fetch())
+  },
+  'click #register':function(event,template){
+     Accounts.createUser({
+       email: email,
+      password: password,
+      profile: { homeAddress: homeAddress }
+    });
+ }
+});
+
+Template.page1.helpers({
+  isInstitution: function() {
+    console.log(Meteor.user().profile.powerofsign);
+    var isInsti = Meteor.user().profile.powerofsign;
+    if (isInsti==1){
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 });

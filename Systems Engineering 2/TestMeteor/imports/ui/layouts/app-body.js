@@ -5,4 +5,10 @@ import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
 import './app-body.html';
-import './app-body.css'
+import './app-body.css';
+
+Template.App_body.events({
+    'click #logout': function(event, template) {
+      Meteor.logout();
+    }
+  });

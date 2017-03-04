@@ -5,10 +5,79 @@
 {{#if currentUser}}
 {{> upload}}
  {{/if}}
+
+ {{#if isInstitution}}
+ <h1> insti </h1>
+ {{/if}}
 </template>
+
+
+<template name="background">
+	<div>
+		<img class="img-responsive" src="images/blockdocslogo.png">
+	</div>
+</template>
+
 
 <template name="upload">
   <form>
-  <input class="upload" type="file" id="upload" name=".../">
+  <!-- <input class="upload" type="file" id="upload" name=".../"> -->
+  <input type="file" class="upload" id="upload" name=".../" accept="application/pdf,application/vnd.ms-excel" />
   </form>
+  <br>
+  {{> imageView}}
+</template>
+
+<template name="imageView">
+  <div class="imageView">
+    {{#each images}}
+     <div>
+		
+        <ul>
+        <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='uploading.pdf' storing='/images/storing.pdf'}}" alt="" class="thumbnail imgsize"/><p style="color:black">{{original.name}}</p></a> 
+        <p id="demo"></p>
+        <button type="button" data-toggle="modal" data-target="#myModal"><i class='fa fa-pencil-square-o'></i></button>
+        <button id="deleteFileButton"><i class="fa fa-trash-o"></i></button>
+		 <!-- <button type="button" class="btnpdf" data-toggle="modal" data-target="#myModal">
+		      File
+		 </button> -->
+		 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	     <div class="modal-dialog" role="document">
+	       <div class="modal-content">
+	         <div class="modal-header">
+	           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	           <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+	         </div>
+	         <div class="modal-body">
+	         <p>Choose the institution you want to send your signature request to:</p>
+	          {{> categories}}
+	         </div>
+
+	         <div class="modal-footer">
+	           <button type="button" class="btnpdf" data-dismiss="modal">Close</button>
+	           <!-- <button onclick="myFunction()" class="btnmodal">Request signature</button> -->
+	           <button class="btnpdf" onclick="successful()">Send</button>
+	         </div>
+	       </div>
+	     </div>
+   		</div>
+        </ul>
+    </div>
+    {{/each}}  
+  </div>
+  <script>
+  function successful(){
+   swal("Request sent!", "Your file was successfully sent!", "success");
+}
+</script>
+
+</template>
+
+<template name="categories">
+	<select id="category-select">
+    <option disabled="disabled" selected="selected">Please Select</option> 
+    {{#each categories}}
+        <option value="{{this}}">{{this}}</option>
+    {{/each}}
+</select>
 </template>

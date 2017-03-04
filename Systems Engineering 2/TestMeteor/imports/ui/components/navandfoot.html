@@ -1,0 +1,36 @@
+
+<template name = "navstd">
+<div class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#">Blockdocs</a>
+  </div>
+  <div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Link</a></li>
+    </ul>
+
+  
+    <ul class="nav navbar-nav">
+      {{#if currentUser}}
+        <button id="logout">logout</button>
+      {{else}}
+       <form action="http://localhost:3000/signin">
+          <input type="submit" value="Signin" />
+        </form>
+        <form action="http://localhost:3000/signup">
+          <input type="submit" value="Signup" />
+        </form>
+      {{/if}}
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      {{> loginButtons align="right"}}
+    </ul>
+      
+  </div>
+</div>
+</template>
+
+<template name = "footstd">
+  <h1> footerd </h1>
+</template>
