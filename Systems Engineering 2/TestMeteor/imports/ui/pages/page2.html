@@ -1,3 +1,53 @@
 <template name ="page2">
-    <h1> yolo </h1>
-    </template>
+    <head>
+  <title>Files To Sign</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<h1> Files to be signed </h1>
+{{#if currentUser}}
+    {{#if isInstitution}}
+        <h1> insti </h1>
+        {{> toSignView}}
+    {{/if}}
+{{/if}}
+</template>
+
+<template name="toSignView">
+  <div class="toSignView">
+    {{#each images}}
+     <div>
+        <ul>
+        <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='uploading.pdf' storing='/images/storing.pdf'}}" alt="" class="thumbnail imgsize"/><p style="color:black">{{original.name}}</p></a> 
+        <button type="button" data-toggle="modal" data-target="#myModal"><i class='fa fa-pencil-square-o'></i></button>
+        <button id="NotSign"><i class="fa fa-trash-o"></i></button>
+        <button id="Sign"><i class="fa fa-trash-o"></i></button>
+		 <!-- <button type="button" class="btnpdf" data-toggle="modal" data-target="#myModal">
+		      File
+		 </button> -->
+		 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	     <div class="modal-dialog" role="document">
+	       <div class="modal-content">
+	         <div class="modal-header">
+	           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	           <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+	         </div>
+	         <div class="modal-footer">
+	           <button type="button" class="btnpdf" data-dismiss="modal">Close</button>
+	           <!-- <button onclick="myFunction()" class="btnmodal">Request signature</button> -->
+	           <button class="btnpdf" onclick="successful()">Send</button>
+	         </div>
+	       </div>
+	     </div>
+   		</div>
+        </ul>
+    </div>
+    {{/each}}  
+  </div>
+  <script>
+  function successful(){
+   swal("Request sent!", "Your file was successfully sent!", "success");
+}
+</script>
+
+</template>

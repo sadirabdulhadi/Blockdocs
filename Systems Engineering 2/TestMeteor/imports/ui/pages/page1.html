@@ -1,6 +1,7 @@
 <template name ="page1">
     <head>
   <title>File Upload Progress</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 {{#if currentUser}}
 {{> upload}}
@@ -32,12 +33,12 @@
   <div class="imageView">
     {{#each images}}
      <div>
-		
         <ul>
         <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='uploading.pdf' storing='/images/storing.pdf'}}" alt="" class="thumbnail imgsize"/><p style="color:black">{{original.name}}</p></a> 
         <p id="demo"></p>
         <button type="button" data-toggle="modal" data-target="#myModal"><i class='fa fa-pencil-square-o'></i></button>
         <button id="deleteFileButton"><i class="fa fa-trash-o"></i></button>
+        <button id="toSign"><i class="fa fa-trash-o"></i></button>
 		 <!-- <button type="button" class="btnpdf" data-toggle="modal" data-target="#myModal">
 		      File
 		 </button> -->

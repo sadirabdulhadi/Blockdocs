@@ -35,8 +35,8 @@ contract BasicSign {
         owner = msg.sender;
     }
 
-    function createDocument(string nonce) payable returns (bytes32 docId) {
-        docId = generateId(nonce);
+    function createDocument(bytes32 dochash) payable returns (bytes32 docId) {
+        docId = dochash;
         if (documents[docId].organizer != 0) throw;
         documents[docId].organizer = msg.sender;
         Created(msg.sender, docId);
