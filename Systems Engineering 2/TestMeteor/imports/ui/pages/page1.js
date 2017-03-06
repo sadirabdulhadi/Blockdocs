@@ -68,7 +68,8 @@ Template.imageView.events({
         console.log("deleteFile button ", this);
         Images.remove({_id: this._id});
     },
-    });
+  });
+  
 Template.categories.helpers({
     categories: function(){
         return ["facebook", "news", "tv", "tweets"]
@@ -86,17 +87,20 @@ Template.categories.events({
 function getBase64(files) {
         //Read File
         var selectedFile = files
+        // console.log("files is");
+        // console.log(files.type);
         //Check File is not Empty
         if (selectedFile.length > 0) {
             // Select the very first file from list
             var fileToLoad = selectedFile[0];
+            console.log(fileToLoad);
             // FileReader function for read the file.
             var fileReader = new FileReader();
             var base64;
-            // Onload of file read the file content
             fileReader.onload = function(fileLoadedEvent) {
-                base64 = fileLoadedEvent.target.result;
-                // Print data in console
+                // base64 = fileLoadedEvent.target.result;
+                // console.log("base 64 is");
+                console.log(base64);
                 console.log(ETHEREUM_CLIENT.sha3(base64));
                 isCalculated = true;
                 hash = ETHEREUM_CLIENT.sha3(base64);
