@@ -231,13 +231,13 @@ var SolidityEvent = require("web3/lib/web3/event.js");
 
   Contract.new = function() {
     if (this.currentProvider == null) {
-      throw new Error("BestSign error: Please call setProvider() first before calling new().");
+      throw new Error("HelloWorld error: Please call setProvider() first before calling new().");
     }
 
     var args = Array.prototype.slice.call(arguments);
 
     if (!this.unlinked_binary) {
-      throw new Error("BestSign error: contract binary not set. Can't deploy new instance.");
+      throw new Error("HelloWorld error: contract binary not set. Can't deploy new instance.");
     }
 
     var regex = /__[^_]+_+/g;
@@ -256,7 +256,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         return name != arr[index + 1];
       }).join(", ");
 
-      throw new Error("BestSign contains unresolved libraries. You must deploy and link the following libraries before you can deploy a new version of BestSign: " + unlinked_libraries);
+      throw new Error("HelloWorld contains unresolved libraries. You must deploy and link the following libraries before you can deploy a new version of HelloWorld: " + unlinked_libraries);
     }
 
     var self = this;
@@ -297,7 +297,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
 
   Contract.at = function(address) {
     if (address == null || typeof address != "string" || address.length != 42) {
-      throw new Error("Invalid address passed to BestSign.at(): " + address);
+      throw new Error("Invalid address passed to HelloWorld.at(): " + address);
     }
 
     var contract_class = this.web3.eth.contract(this.abi);
@@ -308,7 +308,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
 
   Contract.deployed = function() {
     if (!this.address) {
-      throw new Error("Cannot find deployed address: BestSign not deployed or address not set.");
+      throw new Error("Cannot find deployed address: HelloWorld not deployed or address not set.");
     }
 
     return this.at(this.address);
@@ -350,71 +350,52 @@ var SolidityEvent = require("web3/lib/web3/event.js");
   "default": {
     "abi": [
       {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "doc",
-            "type": "string"
-          }
-        ],
-        "name": "createDocument",
+        "constant": true,
+        "inputs": [],
+        "name": "owner",
         "outputs": [
           {
-            "name": "docId",
-            "type": "bytes32"
+            "name": "",
+            "type": "address"
           }
         ],
-        "payable": true,
+        "payable": false,
         "type": "function"
       },
       {
         "constant": false,
         "inputs": [
           {
-            "name": "doc",
-            "type": "string"
+            "name": "_to",
+            "type": "address"
+          },
+          {
+            "name": "_value",
+            "type": "uint256"
           }
         ],
-        "name": "generateId",
+        "name": "transfer",
         "outputs": [
           {
-            "name": "docID",
-            "type": "bytes32"
+            "name": "success",
+            "type": "bool"
           }
         ],
-        "payable": true,
+        "payable": false,
         "type": "function"
       },
       {
         "constant": true,
         "inputs": [
           {
-            "name": "",
-            "type": "bytes32"
-          }
-        ],
-        "name": "documents",
-        "outputs": [
-          {
-            "name": "organizer",
+            "name": "_user",
             "type": "address"
           }
         ],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "docId",
-            "type": "bytes32"
-          }
-        ],
-        "name": "getDocumentSign",
+        "name": "getBalance",
         "outputs": [
           {
-            "name": "count",
+            "name": "_balance",
             "type": "uint256"
           }
         ],
@@ -422,58 +403,16 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "function"
       },
       {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "docId",
-            "type": "bytes32"
-          }
-        ],
-        "name": "getDocumentOrganizer",
-        "outputs": [
-          {
-            "name": "organizer",
-            "type": "address"
-          },
-          {
-            "name": "count",
-            "type": "uint256"
-          }
-        ],
+        "inputs": [],
         "payable": false,
-        "type": "function"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": false,
-            "name": "out",
-            "type": "bytes32"
-          }
-        ],
-        "name": "Print",
-        "type": "event"
+        "type": "constructor"
       }
     ],
-    "unlinked_binary": "0x606060405234610000575b61028d806100186000396000f3606060405260e060020a600035046302e85efe811461004a57806319a9c2f1146100aa5780632b2805db1461010a5780636eac7c171461013657806393d6e7de14610158575b610000565b610098600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284375094965061018b95505050505050565b60408051918252519081900360200190f35b610098600480803590602001908201803590602001908080601f016020809104026020016040519081016040528093929190818152602001838380828437509496506101fd95505050505050565b60408051918252519081900360200190f35b346100005761011a600435610235565b60408051600160a060020a039092168252519081900360200190f35b3461000057610098600435610250565b60408051918252519081900360200190f35b346100005761016860043561026b565b60408051600160a060020a03909316835260208301919091528051918290030190f35b6000610196826101fd565b600081815260208190526040902054909150600160a060020a0316156101bb57610000565b6000818152602081905260409020805473ffffffffffffffffffffffffffffffffffffffff19166c01000000000000000000000000338102041790555b919050565b604080517f6861626962690000000000000000000000000000000000000000000000000000815290519081900360060190205b919050565b600060208190529081526040902054600160a060020a031681565b60008181526020819052604090206001810154905b50919050565b60008181526020819052604081208054600160a060020a031691905b5091509156",
-    "events": {
-      "0x8528251299ede771e6157005ad82960c1e78e9118223b095bcd115c01754de49": {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": false,
-            "name": "out",
-            "type": "bytes32"
-          }
-        ],
-        "name": "Print",
-        "type": "event"
-      }
-    },
-    "updated_at": 1488656699662,
+    "unlinked_binary": "0x606060405234610000575b60018054600160a060020a0319166c01000000000000000000000000338102041790819055600160a060020a031660009081526020819052604090206103e890555b5b6101348061005b6000396000f3606060405260e060020a60003504638da5cb5b8114610034578063a9059cbb1461005d578063f8b2cb4f14610084575b610000565b34610000576100416100a6565b60408051600160a060020a039092168252519081900360200190f35b34610000576100706004356024356100b5565b604080519115158252519081900360200190f35b3461000057610094600435610115565b60408051918252519081900360200190f35b600154600160a060020a031681565b600160a060020a033316600090815260208190526040812054829010156100de5750600061010f565b50600160a060020a033381166000908152602081905260408082208054859003905591841681522080548201905560015b92915050565b600160a060020a0381166000908152602081905260409020545b91905056",
+    "events": {},
+    "updated_at": 1488902768688,
     "links": {},
-    "address": "0x60158a3d06a0feb220eeb4eba12e8b4f2d04385e"
+    "address": "0x444f4d6343143eb0855b01aad00d8d4c55a4cb05"
   }
 };
 
@@ -558,7 +497,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     Contract.links[name] = address;
   };
 
-  Contract.contract_name   = Contract.prototype.contract_name   = "BestSign";
+  Contract.contract_name   = Contract.prototype.contract_name   = "HelloWorld";
   Contract.generated_with  = Contract.prototype.generated_with  = "3.2.0";
 
   // Allow people to opt-in to breaking changes now.
@@ -598,6 +537,6 @@ var SolidityEvent = require("web3/lib/web3/event.js");
   } else {
     // There will only be one version of this contract in the browser,
     // and we can use that.
-    window.BestSign = Contract;
+    window.HelloWorld = Contract;
   }
 })();

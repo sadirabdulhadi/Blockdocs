@@ -231,13 +231,13 @@ var SolidityEvent = require("web3/lib/web3/event.js");
 
   Contract.new = function() {
     if (this.currentProvider == null) {
-      throw new Error("People error: Please call setProvider() first before calling new().");
+      throw new Error("BestSign error: Please call setProvider() first before calling new().");
     }
 
     var args = Array.prototype.slice.call(arguments);
 
     if (!this.unlinked_binary) {
-      throw new Error("People error: contract binary not set. Can't deploy new instance.");
+      throw new Error("BestSign error: contract binary not set. Can't deploy new instance.");
     }
 
     var regex = /__[^_]+_+/g;
@@ -256,7 +256,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         return name != arr[index + 1];
       }).join(", ");
 
-      throw new Error("People contains unresolved libraries. You must deploy and link the following libraries before you can deploy a new version of People: " + unlinked_libraries);
+      throw new Error("BestSign contains unresolved libraries. You must deploy and link the following libraries before you can deploy a new version of BestSign: " + unlinked_libraries);
     }
 
     var self = this;
@@ -297,7 +297,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
 
   Contract.at = function(address) {
     if (address == null || typeof address != "string" || address.length != 42) {
-      throw new Error("Invalid address passed to People.at(): " + address);
+      throw new Error("Invalid address passed to BestSign.at(): " + address);
     }
 
     var contract_class = this.web3.eth.contract(this.abi);
@@ -308,7 +308,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
 
   Contract.deployed = function() {
     if (!this.address) {
-      throw new Error("Cannot find deployed address: People not deployed or address not set.");
+      throw new Error("Cannot find deployed address: BestSign not deployed or address not set.");
     }
 
     return this.at(this.address);
@@ -350,21 +350,54 @@ var SolidityEvent = require("web3/lib/web3/event.js");
   "default": {
     "abi": [
       {
-        "constant": true,
-        "inputs": [],
-        "name": "getPeople",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "doc",
+            "type": "string"
+          }
+        ],
+        "name": "createDocument",
         "outputs": [
           {
-            "name": "",
-            "type": "bytes32[]"
-          },
+            "name": "docId",
+            "type": "bytes32"
+          }
+        ],
+        "payable": true,
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "doc",
+            "type": "string"
+          }
+        ],
+        "name": "generateId",
+        "outputs": [
+          {
+            "name": "docID",
+            "type": "bytes32"
+          }
+        ],
+        "payable": true,
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [
           {
             "name": "",
-            "type": "bytes32[]"
-          },
+            "type": "bytes32"
+          }
+        ],
+        "name": "documents",
+        "outputs": [
           {
-            "name": "",
-            "type": "uint256[]"
+            "name": "organizer",
+            "type": "address"
           }
         ],
         "payable": false,
@@ -374,60 +407,73 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "constant": false,
         "inputs": [
           {
-            "name": "_firstName",
+            "name": "docId",
             "type": "bytes32"
-          },
-          {
-            "name": "_lastName",
-            "type": "bytes32"
-          },
-          {
-            "name": "_age",
-            "type": "uint256"
           }
         ],
-        "name": "addPerson",
+        "name": "getDocumentSign",
         "outputs": [
           {
-            "name": "success",
-            "type": "bool"
+            "name": "count",
+            "type": "uint256"
           }
         ],
         "payable": false,
         "type": "function"
       },
       {
-        "constant": true,
+        "constant": false,
         "inputs": [
           {
-            "name": "",
-            "type": "uint256"
+            "name": "docId",
+            "type": "bytes32"
           }
         ],
-        "name": "people",
+        "name": "getDocumentOrganizer",
         "outputs": [
           {
-            "name": "FirstName",
-            "type": "bytes32"
+            "name": "organizer",
+            "type": "address"
           },
           {
-            "name": "LastName",
-            "type": "bytes32"
-          },
-          {
-            "name": "Age",
+            "name": "count",
             "type": "uint256"
           }
         ],
         "payable": false,
         "type": "function"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "name": "out",
+            "type": "bytes32"
+          }
+        ],
+        "name": "Print",
+        "type": "event"
       }
     ],
-    "unlinked_binary": "0x606060405234610000575b6103d7806100186000396000f3606060405260e060020a60003504634f995d088114610034578063773b82a3146101015780639e7a13ad1461012b575b610000565b3461000057610041610159565b604051808060200180602001806020018481038452878181518152602001915080519060200190602002808383829060006004602084601f0104600302600f01f1509050018481038352868181518152602001915080519060200190602002808383829060006004602084601f0104600302600f01f1509050018481038252858181518152602001915080519060200190602002808383829060006004602084601f0104600302600f01f150905001965050505050505060405180910390f35b34610000576101176004356024356044356102ed565b604080519115158252519081900360200190f35b346100005761013b6004356103a6565b60408051938452602084019290925282820152519081900360600190f35b6040805160208181018352600080835283518083018552818152845180840186528281528551808501875283815286518086018852848152875180870189528581528851606081018a52868152968701869052868901869052855498519798949793969495929491939092919086908059106101d25750595b8181526020808302820101604052905b509450856040518059106101f35750595b8181526020808302820101604052905b509350856040518059106102145750595b8181526020808302820101604052905b509250600091505b858210156102d857600082815481101561000057906000526020600020906003020160005b5060408051606081018252825480825260018401546020830152600290930154918101919091528651909250869084908110156100005760209081029091018101919091528101518451859084908110156100005760209081029091010152604081015183518490849081101561000057602090810290910101525b60019091019061022c565b8484849850985098505b505050505050909192565b6040805160608101825284815260208101849052908101829052600080546001810180835591929183919082818380158290116103645760030281600302836000526020600020918201910161036491905b8082111561036057600080825560018201819055600282015560030161033f565b5090565b5b505050916000526020600020906003020160005b5082518155602083015160018083019190915560408401516002909201919091559250505b509392505050565b600081815481101561000057906000526020600020906003020160005b50805460018201546002909201549092508356",
-    "events": {},
-    "updated_at": 1488656699680,
+    "unlinked_binary": "0x606060405234610000575b61028d806100186000396000f3606060405260e060020a600035046302e85efe811461004a57806319a9c2f1146100aa5780632b2805db1461010a5780636eac7c171461013657806393d6e7de14610158575b610000565b610098600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284375094965061018b95505050505050565b60408051918252519081900360200190f35b610098600480803590602001908201803590602001908080601f016020809104026020016040519081016040528093929190818152602001838380828437509496506101fd95505050505050565b60408051918252519081900360200190f35b346100005761011a600435610235565b60408051600160a060020a039092168252519081900360200190f35b3461000057610098600435610250565b60408051918252519081900360200190f35b346100005761016860043561026b565b60408051600160a060020a03909316835260208301919091528051918290030190f35b6000610196826101fd565b600081815260208190526040902054909150600160a060020a0316156101bb57610000565b6000818152602081905260409020805473ffffffffffffffffffffffffffffffffffffffff19166c01000000000000000000000000338102041790555b919050565b604080517f6861626962690000000000000000000000000000000000000000000000000000815290519081900360060190205b919050565b600060208190529081526040902054600160a060020a031681565b60008181526020819052604090206001810154905b50919050565b60008181526020819052604081208054600160a060020a031691905b5091509156",
+    "events": {
+      "0x8528251299ede771e6157005ad82960c1e78e9118223b095bcd115c01754de49": {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "name": "out",
+            "type": "bytes32"
+          }
+        ],
+        "name": "Print",
+        "type": "event"
+      }
+    },
+    "updated_at": 1488902768686,
     "links": {},
-    "address": "0xe32399a08053cb6e6bcf67ae86df3b9fcf0b4c7a"
+    "address": "0x36654ed3b469f56da5b03022679a899e89a5e0e2"
   }
 };
 
@@ -512,7 +558,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     Contract.links[name] = address;
   };
 
-  Contract.contract_name   = Contract.prototype.contract_name   = "People";
+  Contract.contract_name   = Contract.prototype.contract_name   = "BestSign";
   Contract.generated_with  = Contract.prototype.generated_with  = "3.2.0";
 
   // Allow people to opt-in to breaking changes now.
@@ -552,6 +598,6 @@ var SolidityEvent = require("web3/lib/web3/event.js");
   } else {
     // There will only be one version of this contract in the browser,
     // and we can use that.
-    window.People = Contract;
+    window.BestSign = Contract;
   }
 })();

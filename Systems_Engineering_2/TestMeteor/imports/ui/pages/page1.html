@@ -1,27 +1,44 @@
-<template name ="page2">
+<template name ="page1">
     <head>
-  <title>Files To Sign</title>
+  <title>File Upload Progress</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-
-<h1> Files to be signed </h1>
 {{#if currentUser}}
-    {{#if isInstitution}}
-        <h1> insti </h1>
-        {{> toSignView}}
-    {{/if}}
-{{/if}}
+{{> upload}}
+ {{/if}}
+
+ {{#if isInstitution}}
+ <h1> insti </h1>
+ {{/if}}
 </template>
 
-<template name="toSignView">
-  <div class="toSignView">
+
+<template name="background">
+	<div>
+		<img class="img-responsive" src="images/blockdocslogo.png">
+	</div>
+</template>
+
+
+<template name="upload">
+  <form>
+  <!-- <input class="upload" type="file" id="upload" name=".../"> -->
+  <input type="file" class="upload" id="upload" name=".../" accept="application/pdf,application/vnd.ms-excel" />
+  </form>
+  <br>
+  {{> imageView}}
+</template>
+
+<template name="imageView">
+  <div class="imageView">
     {{#each images}}
      <div>
         <ul>
         <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='uploading.pdf' storing='/images/storing.pdf'}}" alt="" class="thumbnail imgsize"/><p style="color:black">{{original.name}}</p></a> 
+        <p id="demo"></p>
         <button type="button" data-toggle="modal" data-target="#myModal"><i class='fa fa-pencil-square-o'></i></button>
-        <button id="notSign"><i class="fa fa-trash-o"></i></button>
-        <button id="sign"><i class="fa fa-trash-o"></i></button>
+        <button id="deleteFileButton"><i class="fa fa-trash-o"></i></button>
+        <button id="toSign"><i class="fa fa-pencil-square-o"></i></button>
 		 <!-- <button type="button" class="btnpdf" data-toggle="modal" data-target="#myModal">
 		      File
 		 </button> -->
@@ -32,6 +49,11 @@
 	           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	           <h4 class="modal-title" id="myModalLabel">Modal title</h4>
 	         </div>
+	         <div class="modal-body">
+	         <p>Choose the institution you want to send your signature request to:</p>
+	          {{> categories}}
+	         </div>
+
 	         <div class="modal-footer">
 	           <button type="button" class="btnpdf" data-dismiss="modal">Close</button>
 	           <!-- <button onclick="myFunction()" class="btnmodal">Request signature</button> -->
@@ -50,4 +72,13 @@
 }
 </script>
 
+</template>
+
+<template name="categories">
+	<select id="category-select">
+    <option disabled="disabled" selected="selected">Please Select</option> 
+    {{#each categories}}
+        <option value="{{this}}">{{this}}</option>
+    {{/each}}
+</select>
 </template>

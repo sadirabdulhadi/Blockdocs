@@ -28,6 +28,4 @@ cfs:standard-packages
 cfs:filesystem
 ostrio:meteor-root
 ethereum:web3
-twbs:bootstrap
 accounts-ui
-peppelg:bootstrap-3-modal
