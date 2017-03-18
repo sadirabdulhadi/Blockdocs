@@ -16,7 +16,7 @@ if (Meteor.isClient) {
                 profile: {
                   firstName: template.find('#firstName').value,
                   lastName: template.find('#lastName').value,
-                  powerofsign : 0
+                  powerofsign : 1
                 }
             });
         }

@@ -9,6 +9,7 @@ ETHEREUM_CLIENT.eth.defaultAccount = ETHEREUM_CLIENT.eth.accounts[1];
 var PCabi = [{"constant":false,"inputs":[{"name":"nonce","type":"string"}],"name":"generateId","outputs":[{"name":"","type":"bytes32"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes32"}],"name":"documents","outputs":[{"name":"organizer","type":"address"}],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"SimpleSign","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"docId","type":"bytes32"},{"name":"signId","type":"uint8"}],"name":"getSignDetails","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"docId","type":"bytes32"}],"name":"addSignature","outputs":[],"payable":true,"type":"function"},{"constant":false,"inputs":[{"name":"docId","type":"bytes32"}],"name":"getDocumentDetails","outputs":[{"name":"organizer","type":"address"},{"name":"count","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"docId","type":"bytes32"}],"name":"getDocumentOrganizer","outputs":[{"name":"organizer","type":"address"},{"name":"count","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"docId","type":"bytes32"},{"name":"index","type":"uint256"}],"name":"getDocumentSignature","outputs":[{"name":"value","type":"address"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"docId","type":"bytes32"}],"name":"removeDocument","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"dochash","type":"bytes32"}],"name":"createDocument","outputs":[{"name":"docId","type":"bytes32"}],"payable":true,"type":"function"},{"constant":false,"inputs":[{"name":"docId","type":"bytes32"}],"name":"getSignsCount","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"payable":false,"type":"fallback"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":false,"name":"id","type":"bytes32"}],"name":"Created","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":false,"name":"docId","type":"bytes32"}],"name":"Signed","type":"event"}];
 var PCaddress = '0x6a4fab84d9746194e08a69903d83dad44441b6b4';
 var hash = undefined;
+var category = undefined;
 
 Template.page1.events({
   //upload document on click
@@ -52,13 +53,14 @@ Template.imageView.helpers({
 
 Template.imageView.events({
   'click #toSign': function () {
+    console.log(this._id);
     toSign.insert({
-        id: this._id
-        // createdAt: new Date(), // current time
-        // owner: Meteor.userId(),
-        // username: Meteor.user().emails[0].address
+        id: this._id,
+        institution: category
         });
     console.log("hey habibi");
+    console.log(category);
+    category = undefined;
   },
       'click #button': function () {
         Blaze.renderWithData(Template.toBeRenderedTemplate, {yourdata} , document.body );
@@ -73,13 +75,13 @@ Template.imageView.events({
 
 Template.categories.helpers({
     categories: function(){
-        return ["facebook", "news", "tv", "tweets"]
+        return Meteor.users.find({"profile.powerofsign": {$eq: 1}}).fetch().map(function(a) {return a.profile.firstName;});
     }
 });
 
 Template.categories.events({
     "change #category-select": function (event, template) {
-        var category = $(event.currentTarget).val();
+        category = $(event.currentTarget).val();
         console.log("category : " + category);
         // additional code to do what you want with the category
     }
