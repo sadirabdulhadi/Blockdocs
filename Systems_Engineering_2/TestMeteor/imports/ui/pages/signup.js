@@ -4,7 +4,7 @@ if (Meteor.isClient) {
   Template.signup.events({
     'submit form': function(event, template) {
         event.preventDefault();
-        console.log('creating account');
+        console.log('creating acjkcount');
         var passwordVar = template.find('#password').value;
         var confirmVar = template.find('#confirmPassword').value;
         if (passwordVar === confirmVar) {
