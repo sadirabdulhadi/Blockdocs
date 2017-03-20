@@ -5,7 +5,7 @@ import { toSign } from '../../../lib/database.js';
 import { Meteor } from 'meteor/meteor';
 //Defining the contract
 var ETHEREUM_CLIENT = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
-ETHEREUM_CLIENT.eth.defaultAccount = ETHEREUM_CLIENT.eth.accounts[1];
+ETHEREUM_CLIENT.eth.defaultAccount = ETHEREUM_CLIENT.eth.accounts[0];
 var PCabi = [{"constant":false,"inputs":[{"name":"nonce","type":"string"}],"name":"generateId","outputs":[{"name":"","type":"bytes32"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes32"}],"name":"documents","outputs":[{"name":"organizer","type":"address"}],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"SimpleSign","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"docId","type":"bytes32"},{"name":"signId","type":"uint8"}],"name":"getSignDetails","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"docId","type":"bytes32"}],"name":"addSignature","outputs":[],"payable":true,"type":"function"},{"constant":false,"inputs":[{"name":"docId","type":"bytes32"}],"name":"getDocumentDetails","outputs":[{"name":"organizer","type":"address"},{"name":"count","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"docId","type":"bytes32"}],"name":"getDocumentOrganizer","outputs":[{"name":"organizer","type":"address"},{"name":"count","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"docId","type":"bytes32"},{"name":"index","type":"uint256"}],"name":"getDocumentSignature","outputs":[{"name":"value","type":"address"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"docId","type":"bytes32"}],"name":"removeDocument","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"dochash","type":"bytes32"}],"name":"createDocument","outputs":[{"name":"docId","type":"bytes32"}],"payable":true,"type":"function"},{"constant":false,"inputs":[{"name":"docId","type":"bytes32"}],"name":"getSignsCount","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"payable":false,"type":"fallback"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":false,"name":"id","type":"bytes32"}],"name":"Created","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":false,"name":"docId","type":"bytes32"}],"name":"Signed","type":"event"}];
 var PCaddress = '0x6a4fab84d9746194e08a69903d83dad44441b6b4';
 var hash = undefined;
@@ -14,8 +14,14 @@ var category = undefined;
 Template.page1.events({
   //upload document on click
   'change .upload': function(event, template) {
-    event.preventDefault();
+    ETHEREUM_CLIENT.eth.defaultAccount = ETHEREUM_CLIENT.eth.accounts[Meteor.user().profile.accounts];
+    console.log("it is")
+    console.log(Meteor.user().profile.accounts);
+    hash=undefined;
     var files = event.target.files;
+    //console.log("in the beginning hash is " + hash)
+    //console.log("the hash should be " + getBase64(files))
+    event.preventDefault();
     calculateHash(files);
     insertDoc(files);
   },
@@ -28,6 +34,7 @@ Template.page1.events({
     });
  }
 });
+
 Template.page1.helpers({
   isInstitution: function() {
     console.log(Meteor.user().profile.powerofsign);
@@ -58,8 +65,6 @@ Template.imageView.events({
         id: this._id,
         institution: category
         });
-    console.log("hey habibi");
-    console.log(category);
     category = undefined;
   },
       'click #button': function () {
@@ -90,8 +95,6 @@ Template.categories.events({
 function getBase64(files) {
         //Read File
         var selectedFile = files
-        // console.log("files is");
-        // console.log(files.type);
         //Check File is not Empty
         if (selectedFile.length > 0) {
             // Select the very first file from list
@@ -99,13 +102,16 @@ function getBase64(files) {
             // FileReader function for read the file.
             var fileReader = new FileReader();
             var base64;
+            var toreturn;
             fileReader.onload = function(fileLoadedEvent) {
-                // base64 = fileLoadedEvent.target.result;
-                // console.log("base 64 is");
-                console.log(base64);
-                console.log(ETHEREUM_CLIENT.sha3(base64));
+                base64 = fileLoadedEvent.target.result;
+                //console.log("base 64 is");
+                //console.log(base64);
                 isCalculated = true;
-                hash = ETHEREUM_CLIENT.sha3(base64);
+                toreturn = ETHEREUM_CLIENT.sha3(base64);
+                //console.log("to return is " + toreturn);
+                hash = toreturn;
+                console.log("hash has been calculated, it's now" + hash)
             };
             // Convert data to base64
             fileReader.readAsDataURL(fileToLoad);
@@ -116,10 +122,11 @@ function insertDoc(files){
       console.log("we're in insertdoc"); 
       console.log(hash); 
       if(hash == undefined){
+        console.log("we're delaying, hash is" + hash); 
         setTimeout(insertDoc, 1000, files);
       }
       else{
-        console.log("It's finally defined");
+        console.log("It's finally defined, it's " + hash);
         for (var i = 0, ln = files.length; i < ln; i++) {
           Images.insert(files[i], function (err, fileObj) {
             documentsdb.insert({
@@ -134,10 +141,17 @@ function insertDoc(files){
         var depdep = ETHEREUM_CLIENT.eth.contract(PCabi).at(PCaddress);
         console.log(depdep.createDocument(hash));
         console.log(documentsdb.find({}).fetch());
-        hash=undefined;
+        hash = undefined;
+        console.log(hash);
       }
 }
 
 function calculateHash(files){
   getBase64(files);
+}
+
+getUserId = function(){
+  console.log("we're called indeed");
+  console.log(Meteor.userId());
+  return Meteor.userId();
 }

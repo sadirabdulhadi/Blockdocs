@@ -25,7 +25,6 @@ Template.page2.helpers({
   }
 });
 
-
 Template.toSignView.helpers({
   images: function () {
     var UserImages = toSign.find({}).fetch();
