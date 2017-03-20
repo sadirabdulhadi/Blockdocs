@@ -62,7 +62,7 @@ Template.imageView.events({
   'click #toSign': function () {
     console.log(this._id);
     toSign.insert({
-        id: this._id,
+        document_id: this._id,
         institution: category
         });
     category = undefined;

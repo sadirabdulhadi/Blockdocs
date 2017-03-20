@@ -27,8 +27,11 @@ Template.page2.helpers({
 
 Template.toSignView.helpers({
   images: function () {
-    var UserImages = toSign.find({}).fetch();
-    var imageIds = UserImages.map(function(a) {return a.id;});
+    console.log("helloo");
+    var userFirstName = Meteor.users.find({_id : Meteor.userId()}).fetch()[0].profile.firstName;
+    var UserImages = toSign.find({institution:userFirstName}).fetch();
+    console.log(UserImages);
+    var imageIds = UserImages.map(function(a) {return a.document_id;});
     console.log("yoyo");
     console.log(UserImages);
     return Images.find({_id: {$in: imageIds}}); // Where Images is an FS.Collection instance
