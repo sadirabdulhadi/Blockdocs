@@ -10,6 +10,8 @@ var PCabi = [{"constant":false,"inputs":[{"name":"nonce","type":"string"}],"name
 var PCaddress = '0x6a4fab84d9746194e08a69903d83dad44441b6b4';
 var hash = undefined;
 var category = undefined;
+var currentDocumentId = undefined;
+
 
 Template.page1.events({
   //upload document on click
@@ -19,7 +21,7 @@ Template.page1.events({
     console.log(Meteor.user().profile.accounts);
     hash=undefined;
     var files = event.target.files;
-    //console.log("in the beginning hash is " + hash)
+    console.log(files[0]);
     //console.log("the hash should be " + getBase64(files))
     event.preventDefault();
     calculateHash(files);
@@ -37,13 +39,16 @@ Template.page1.events({
 
 Template.page1.helpers({
   isInstitution: function() {
-    console.log(Meteor.user().profile.powerofsign);
-    var isInsti = Meteor.user().profile.powerofsign;
-    if (isInsti==1){
-      return true;
-    }
-    else {
-      return false;
+    if(Meteor.user()){
+      console.log(Meteor.user());
+      var isInsti = Meteor.user().profile.powerofsign;
+      console.log(isInsti);
+      if (isInsti==1){
+        return true;
+      }
+      else {
+        return false;
+      }
     }
   }
 });
@@ -60,20 +65,23 @@ Template.imageView.helpers({
 
 Template.imageView.events({
   'click #toSign': function () {
-    console.log(this._id);
+    console.log("yay called");
     toSign.insert({
-        document_id: this._id,
-        institution: category
+        document_id: currentDocumentId,
+        institution: category,
+        signed: 0
         });
     category = undefined;
   },
-      'click #button': function () {
-        Blaze.renderWithData(Template.toBeRenderedTemplate, {yourdata} , document.body );
-        $('#yourModal').modal('show');
-      },
-       'click #deleteFileButton ': function (event) {
-        console.log("deleteFile button ", this);
-        Images.remove({_id: this._id});
+    'click #button': function () {
+      currentDocumentId = this._id;
+      console.log("linke here isss" );
+      //Blaze.renderWithData(Template.toBeRenderedTemplate, this.url , document.body );
+      $('#yourModal').modal('show');
+    },
+      'click #deleteFileButton ': function (event) {
+      console.log("deleteFile button ", this);
+      Images.remove({_id: this._id});
     },
   });
   
@@ -119,6 +127,8 @@ function getBase64(files) {
     }
 
 function insertDoc(files){
+      console.log("files are"); 
+      console.log(files);
       console.log("we're in insertdoc"); 
       console.log(hash); 
       if(hash == undefined){
