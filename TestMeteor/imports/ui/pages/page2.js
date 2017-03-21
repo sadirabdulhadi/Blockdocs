@@ -15,14 +15,17 @@ var userFirstName;
 
 Template.page2.helpers({
 //user is institution
-  isInstitution: function() {
-    console.log(Meteor.user().profile.powerofsign);
-    var isInsti = Meteor.user().profile.powerofsign;
-    if (isInsti==1){
-      return true;
-    }
-    else {
-      return false;
+isInstitution: function() {
+    if(Meteor.user()){
+      console.log(Meteor.user());
+      var isInsti = Meteor.user().profile.powerofsign;
+      console.log(isInsti);
+      if (isInsti==1){
+        return true;
+      }
+      else {
+        return false;
+      }
     }
   }
 });

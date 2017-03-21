@@ -12,6 +12,7 @@ var hash = undefined;
 var category = undefined;
 var currentDocumentId = undefined;
 
+
 Template.page1.events({
   //upload document on click
   'change .upload': function(event, template) {
@@ -38,13 +39,16 @@ Template.page1.events({
 
 Template.page1.helpers({
   isInstitution: function() {
-    console.log(Meteor.user().profile.powerofsign);
-    var isInsti = Meteor.user().profile.powerofsign;
-    if (isInsti==1){
-      return true;
-    }
-    else {
-      return false;
+    if(Meteor.user()){
+      console.log(Meteor.user());
+      var isInsti = Meteor.user().profile.powerofsign;
+      console.log(isInsti);
+      if (isInsti==1){
+        return true;
+      }
+      else {
+        return false;
+      }
     }
   }
 });
