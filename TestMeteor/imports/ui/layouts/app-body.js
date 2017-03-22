@@ -12,7 +12,3 @@ Template.App_body.events({
       Meteor.logout();
     }
   });
-
-Meteor.autorun(function(){
-  $('body').css('background-image','url(images/wood.jpg)');
-});
