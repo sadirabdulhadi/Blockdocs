@@ -1,36 +1,40 @@
 
 <template name = "navstd">
 <div class="navbar navbar-default" role="navigation">
-  <div class="navbar-header">
-    <a class="navbar-brand" href="#">Blockdocs</a>
+  <div class="navbar-header" >
+    
+   <ul class="nav navbar-nav brand">
+      <li class="active" > <img class="img-responsive" src="images/blockdocslogo.png"></li>
+    </ul> 
   </div>
   <div class="navbar-collapse collapse">
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Link</a></li>
-    </ul>
-
-  
-    <ul class="nav navbar-nav">
-      {{#if currentUser}}
-        <button id="logout">logout</button>
-      {{else}}
-       <form action="http://localhost:3000/signin">
-          <input type="submit" value="Signin" />
-        </form>
-        <form action="http://localhost:3000/signup">
-          <input type="submit" value="Signup" />
-        </form>
-      {{/if}}
-    </ul>
-
-    <ul class="nav navbar-nav navbar-right">
+   <ul class="nav navbar-nav navbar-right" style="margin-top:10px;">
       {{> loginButtons align="right"}}
     </ul>
       
+    <ul class="nav navbar-nav navbar-right">
+      {{#if currentUser}}
+        
+      {{else}}
+      
+      <label for="signin" style="margin:left;">
+       <form action="http://localhost:3000/signin">
+          <input class="logoutbtn" type="submit" value="Signin" id="signin"/>
+        </form>
+     </label>
+     <label for="signup">
+        <form action="http://localhost:3000/signup">
+          <input class="logoutbtn" type="submit" value="Signup" id="signup" />
+        </form>
+     </label>
+      {{/if}}
+    </ul>
+
+   
   </div>
 </div>
 </template>
 
 <template name = "footstd">
-  <h1> footerd </h1>
+  <!-- <div class="footer"></div> -->
 </template>

@@ -1,11 +1,13 @@
 <template name ="page1">
-    <head>
-  <title>File Upload Progress</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <head>
+    <title>File Upload Progress</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 {{#if currentUser}}
-{{> upload}}
- {{/if}}
+  {{> upload}}
+{{else}}
+  {{> intro}}
+{{/if}}
 
  {{#if isInstitution}}
  <h1> insti </h1>
@@ -13,55 +15,123 @@
 </template>
 
 
-<template name="background">
-	<div>
-		<img class="img-responsive" src="images/blockdocslogo.png">
-	</div>
+<template name="intro">
+  <h1 class="textstyle" align="center" style="font-size: 300%; margin-top:6%">Notarisation made easy</h1>
+    <p class="textstyle" align="center" style="font-size: 100%; margin-bottom:4%;">One platform for all your signatures</p>
+  <div class="card">
+    <br>
+    <br>
+    <div align="center">
+      <i class="fa fa-upload iconstyle" aria-hidden="true" style="font-size:160%;margin-left:5%;"></i>
+    </div>
+    <br>
+    <p class="textstyle2" align="center" style="font-size: 120%;">Upload your documents</p>
+    <hr width="40%">
+    <p class="textstyle" align="center" style="font-size:110%"> Upload your documents  <br> to be <br> authenticated</p>
+  </div>
+  <div class="card">
+    <br>
+    <br>
+    <div align="center">
+      <i class="fa fa-pencil-square-o iconstyle" aria-hidden="true" style="font-size:160%; margin-left:5%;"></i>
+    </div>
+    <br>
+    <p class="textstyle2" align="center" style="font-size: 120%;">Request a signature</p>
+    <hr width="40%">
+    <p class="textstyle" align="center" style="font-size:110%"> Find the right institution <br> and <br> send a request</p>
+  </div>
+  <div class="card">
+    <br>
+    <br>
+    <div align="center">
+      <i class="fa fa-inbox iconstyle" aria-hidden="true" style="font-size:160%; margin-left:5%;"></i>
+    </div>
+    <br>
+    <p class="textstyle2" align="center" style="font-size: 120%;">Receive your signed document</p>
+    <hr width="40%">
+    <p class="textstyle" align="center" style="font-size:110%"> Send your document  <br> when <br> it is signed</p>
+  </div>
 </template>
 
 
 <template name="upload">
-  <form>
+  <h1 align="center" class="textstyle" style="font-size: 300%;margin-top:6%; ">Manage your documents</h1>
+  <p align="center" class="textstyle" style="font-size: 100%; margin-bottom:4%;">Upload a file and request a signature</p>
+<div class="card2">
+  <form style="float:center;">
   <!-- <input class="upload" type="file" id="upload" name=".../"> -->
-  <input type="file" class="upload" id="upload" name=".../" accept="application/pdf,application/vnd.ms-excel" />
-  </form>
   <br>
+  <br>
+    <div align="center">
+      <i class="fa fa-upload iconstyle" aria-hidden="true" style="font-size:200%;margin-left:5%;"></i>
+    </div>
+    <br>
+  <p class="textstyle2" align="center">Upload a new PDF file</p>
+  <hr width="40%">
+  <div align="center">
+    <label class="btn btn-default btn-file">
+      Browse <input style="display:none" type="file" class="upload" id="upload" name=".../" accept="application/pdf,application/vnd.ms-excel" />
+    </label>
+  </div>
+  <br>
+  </form>
+</div>
+<div class="card2" style="float:right;margin-right:3%;">
+    <br>
+    <br>
+   
+    <div align="center">
+      <i class="fa fa-pencil-square-o iconstyle" aria-hidden="true" style="font-size:200%;margin-left:5%;"></i>
+  </div>
+  <br>
+  <p class="textstyle2" align="center">Check your signed documents</p>
+  <hr width="40%">
+  <!-- <div align="center">
+      <i class="fa fa-pencil-square-o iconstyle" aria-hidden="true" style="font-size:200%;margin-left:5%;"></i>
+  </div> -->
+  <br>
+</div>
+  <!-- <div class="iconstyle"><i class="fa fa-arrow-circle-o-right" aria-hidden="true" style="font-size:300%;" ></i><p style="float:left">Signed</p></div>  -->
+  <div class="card3">
   {{> imageView}}
+</div>
 </template>
 
 <template name="imageView">
   <div class="imageView">
+
     {{#each images}}
+
      <div>
-        <ul>
-        <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='uploading.pdf' storing='/images/storing.pdf'}}" alt="" class="thumbnail imgsize"/><p style="color:black">{{original.name}}</p></a> 
+        <ul style="float:left;margin-left: 2%;">
+          <br>
+        <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='uploading.pdf' storing='/images/storing.pdf'}}" alt="" class="thumbnail imgsize"/><p style="color:white;" class="box">{{original.name}}</p></a> 
         <p id="demo"></p>
-        <button id="button" type="button" data-toggle="modal" data-target="#myModal"><i class='fa fa-pencil-square-o'></i></button>
+        <button type="button" data-toggle="modal" data-target="#myModal"><i class='fa fa-pencil-square-o'></i></button>
         <button id="deleteFileButton"><i class="fa fa-trash-o"></i></button>
-        <button id="habibi"><i class="fa fa-pencil-square-o"></i></button>
-		 <!-- <button type="button" class="btnpdf" data-toggle="modal" data-target="#myModal">
-		      File
-		 </button> -->
-		 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	     <div class="modal-dialog" role="document">
-	       <div class="modal-content">
-	         <div class="modal-header">
-	           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	           <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-	         </div>
-	         <div class="modal-body">
-	         <p>Choose the institution you want to send your signature request to:</p>
-	          {{> categories}}
-            <p> {{this.url}}</p>
-	         </div>
-	         <div class="modal-footer">
-	           <button type="button" class="btnpdf" data-dismiss="modal">Close</button>
-	           <!-- <button onclick="myFunction()" class="btnmodal">Request signature</button> -->
-	           <button class="btnpdf" data-dismiss="modal" id="toSign">Send</button>
-	         </div>
-	       </div>
-	     </div>
-   		</div>
+     <!-- <button type="button" class="btnpdf" data-toggle="modal" data-target="#myModal">
+          File
+     </button> -->
+     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+       <div class="modal-dialog" role="document">
+         <div class="modal-content">
+           <div class="modal-header">
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+             <h4 class="modal-title" id="myModalLabel">Request signature</h4>
+           </div>
+           <div class="modal-body">
+           <p>Choose the institution you want to send your signature request to:</p>
+            {{> categories}}
+           </div>
+
+           <div class="modal-footer">
+             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+             <!-- <button onclick="myFunction()" class="btnmodal">Request signature</button> -->
+             <button class="btn btn-default" onclick="successful()">Send</button>
+           </div>
+         </div>
+       </div>
+      </div>
         </ul>
     </div>
     {{/each}}  
@@ -75,7 +145,7 @@
 </template>
 
 <template name="categories">
-	<select id="category-select">
+  <select id="category-select">
     <option disabled="disabled" selected="selected">Please Select</option> 
     {{#each categories}}
         <option value="{{this}}">{{this}}</option>
