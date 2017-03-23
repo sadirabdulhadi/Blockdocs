@@ -18,10 +18,30 @@
     {{#each images}}
      <div>
         <ul>
-        <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='uploading.pdf' storing='/images/storing.pdf'}}" alt="" class="thumbnail imgsize"/><p style="color:black">{{original.name}}</p></a> 
-        <button type="button" data-toggle="modal" data-target="#myModal"><i class='fa fa-pencil-square-o'></i></button>
-        <button id="notSign"><i class="fa fa-trash-o"></i></button>
-        <button id="sign"><i class="fa fa-pencil-square-o"></i></button>
+          <br>
+        <!-- <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='uploading.pdf' storing='/images/storing.pdf'}}" alt="" class="thumbnail imgsize"/><p style="color:white;font-family: yanone kaffeesatz;" class="box">{{original.name}}</p></a>  -->
+        <div class="container card3" align="center" style="margin-left:8%;color:black;">  
+        <div style="overflow-x:auto;"> 
+        <br> 
+            <table width="80%">   
+            <col width="25.5%"> 
+            <col width="35.5%"> 
+            <col width="27.5%"> 
+
+              <tbody>
+                <tr>
+                  <td><a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='uploading.pdf' storing='/images/storing.pdf'}}" alt="" class="thumbnail imgsize"/><p style="color:black;" class="box">{{original.name}}</p></a></td>
+                  <td>{{uploadedAt}}</td>
+                  <td>Waiting to be signed</td>
+                  <td> 
+                    <button type="button" class="btnpdf" data-toggle="modal" data-target="#myModal"><i class='fa fa-pencil-square-o'></i></button>
+                     <button id="deleteFileButton" class="btnpdf"><i class="fa fa-trash-o"></i></button>
+                  </td>
+                </tr>  
+              </tbody>
+            </table>
+          </div>
+        </div>
 		 <!-- <button type="button" class="btnpdf" data-toggle="modal" data-target="#myModal">
 		      File
 		 </button> -->
@@ -46,7 +66,7 @@
   </div>
   <script>
   function successful(){
-   swal("Request sent!", "Your file was successfully sent!", "success");
+   swal("Signed!", "This file was successfully signed!", "success");
 }
 </script>
 

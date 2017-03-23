@@ -55,24 +55,19 @@
 
 
 <template name="upload">
-  <h1 align="center" class="textstyle3" style="font-size: 300%;margin-bottom:3%; " id="msg2"></h1>
+   <h1 align="center" class="textstyle3" style="font-size: 300%; " id="msg2"></h1>
+  <form style="float:center;">
+  <!-- <input class="upload" type="file" id="upload" name=".../"> -->
+  <div style="margin-bottom:5%;"></div>
+  <!-- <p class="textstyle2" align="center">Upload a new PDF file</p> -->
+   
+  <div align="center">
+    <label>
+      <buton class="button twitter"><span><i class="fa fa-upload" aria-hidden="true"></i></span><p>Upload file</p></buton> <input style="display:none" type="file" class="upload" id="upload" name=".../" accept="application/pdf,application/vnd.ms-excel" />
+    </label>
+  </div>
+  </form>
 
-    <div class="card2">
-      <form style="float:center;">
-      <!-- <input class="upload" type="file" id="upload" name=".../"> -->
-      <br>
-      <br>
-      <p class="textstyle2" align="center">Upload a new PDF file</p>
-      <hr width="40%">
-      <br>
-      <div align="center">
-        <label>
-          <i class="fa fa-upload iconstyle2" aria-hidden="true" style="font-size:200%;"></i> <input style="display:none" type="file" class="upload" id="upload" name=".../" accept="application/pdf,application/vnd.ms-excel" />
-        </label>
-      </div>
-      <br>
-      </form>
-    </div>
 
       <!-- <div class="iconstyle"><i class="fa fa-arrow-circle-o-right" aria-hidden="true" style="font-size:300%;" ></i><p style="float:left">Signed</p></div>  -->
     <div style="margin-top:20%"></div>
@@ -94,7 +89,7 @@
 
 <template name="imageView">
   <div class="imageView">
-    <div class="container" style="margin-left:21%">  
+   <!-- <div class="container" style="margin-left:21%">  
         <div style="overflow-x:auto;">  
             <table width="80%">   
             <col width="20%"> 
@@ -110,7 +105,7 @@
               </thead>
             </table>
     </div>
-    </div>
+    </div>  -->
 {{#each images}}
      <div>
         <ul>
@@ -123,6 +118,7 @@
             <col width="25.5%"> 
             <col width="35.5%"> 
             <col width="27.5%"> 
+
               <tbody>
                 <tr>
                   <td><a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='uploading.pdf' storing='/images/storing.pdf'}}" alt="" class="thumbnail imgsize"/><p style="color:black;" class="box">{{original.name}}</p></a></td>
