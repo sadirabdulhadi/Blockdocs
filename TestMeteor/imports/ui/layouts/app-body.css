@@ -1,10 +1,12 @@
 .btnpdf{
   background-color: transparent;
   background-repeat:no-repeat;
-  border: none;
   cursor:pointer;
   overflow: hidden;
   outline:none;
+  color: black;
+  font-size: 150%;
+  border: none;
 }
 
 .imgsize{
@@ -43,11 +45,18 @@
 .textstyle{
   font-family: Neou;
   font-style: regular;
-  color: white;
+  color: black; 
 }
+
 .textstyle2{
   font-family: Neou;
-  color: white;
+  color:black;
+}
+
+.textstyle3{
+  font-family: Neou;
+  font-style: regular;
+  color: white; 
 }
 
 /* CARDS */
@@ -56,14 +65,15 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     width: 30%;
-    height: 250px;
+    height: 230px;
     float:left;
     margin-left: 2%;
+    background-color: white;
 }
 
 .card:hover {
     box-shadow: 20px 15px 20px 15px rgba(0,0,0,0.2);
-    color: white;
+    
 }
 
 .container {
@@ -73,16 +83,17 @@
 .card2 {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    width: 45%;
-    height: 200px;
+    width: 25%;
+    height:180px;
     float:left;
     margin-left: 2%;
-    color: white;
+    background-color: white;
+    margin-left:37%;
 }
 
 .card2:hover {
     box-shadow: 20px 15px 20px 15px rgba(0,0,0,0.2);
-    color: white;
+    
 }
 
 .container {
@@ -92,25 +103,34 @@
 .card3 {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    width: 95%;
-    height: 100%;
+    width: 80%;
+    height: 150px;
     float:left;
-    margin-left: 2%;
-    color: white;
-    margin-top: 30px;
+    background-color: white;
 }
 
 .card3:hover {
     box-shadow: 20px 15px 20px 15px rgba(0,0,0,0.2);
-    color: white;
+    
 }
 
 .container {
     padding: 2px 16px;
 }
 
+
 .iconstyle{
-  color: white;
+  color: black;
+}
+
+.iconstyle2{
+  background-color: transparent;
+  font-size:200%;
+  margin-left:5%;
+}
+
+.iconstyle2:hover{
+   cursor: pointer; 
 }
 
 .navbar-inner {
@@ -122,7 +142,7 @@
     text-overflow:    ellipsis;   /* IE, Safari (WebKit) */
     overflow:hidden;              /* don't show excess chars */
     white-space:nowrap;           /* force single line */
-    width: 150px;                 /* fixed width */
+    width: 120px;                 /* fixed width */
 }
 
 .thumbnail:hover{

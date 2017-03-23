@@ -16,8 +16,8 @@
 
 
 <template name="intro">
-  <h1 class="textstyle" align="center" style="font-size: 300%; margin-top:6%">Notarisation made easy</h1>
-    <p class="textstyle" align="center" style="font-size: 100%; margin-bottom:4%;">One platform for all your signatures</p>
+  <h1 class="textstyle3" align="center" style="font-size: 300%; margin-top:6%">Notarisation made easy</h1>
+    <p class="textstyle3" align="center" style="font-size: 100%; margin-bottom:4%;">One platform for all your signatures</p>
   <div class="card">
     <br>
     <br>
@@ -55,60 +55,89 @@
 
 
 <template name="upload">
-  <h1 align="center" class="textstyle" style="font-size: 300%;margin-top:6%; ">Manage your documents</h1>
-  <p align="center" class="textstyle" style="font-size: 100%; margin-bottom:4%;">Upload a file and request a signature</p>
-<div class="card2">
-  <form style="float:center;">
-  <!-- <input class="upload" type="file" id="upload" name=".../"> -->
-  <br>
-  <br>
-    <div align="center">
-      <i class="fa fa-upload iconstyle" aria-hidden="true" style="font-size:200%;margin-left:5%;"></i>
+  <h1 align="center" class="textstyle3" style="font-size: 300%;margin-bottom:3%; " id="msg2"></h1>
+
+    <div class="card2">
+      <form style="float:center;">
+      <!-- <input class="upload" type="file" id="upload" name=".../"> -->
+      <br>
+      <br>
+      <p class="textstyle2" align="center">Upload a new PDF file</p>
+      <hr width="40%">
+      <br>
+      <div align="center">
+        <label>
+          <i class="fa fa-upload iconstyle2" aria-hidden="true" style="font-size:200%;"></i> <input style="display:none" type="file" class="upload" id="upload" name=".../" accept="application/pdf,application/vnd.ms-excel" />
+        </label>
+      </div>
+      <br>
+      </form>
     </div>
-    <br>
-  <p class="textstyle2" align="center">Upload a new PDF file</p>
-  <hr width="40%">
-  <div align="center">
-    <label class="btn btn-default btn-file">
-      Browse <input style="display:none" type="file" class="upload" id="upload" name=".../" accept="application/pdf,application/vnd.ms-excel" />
-    </label>
-  </div>
-  <br>
-  </form>
-</div>
-<div class="card2" style="float:right;margin-right:3%;">
-    <br>
-    <br>
-   
-    <div align="center">
-      <i class="fa fa-pencil-square-o iconstyle" aria-hidden="true" style="font-size:200%;margin-left:5%;"></i>
-  </div>
-  <br>
-  <p class="textstyle2" align="center">Check your signed documents</p>
-  <hr width="40%">
-  <!-- <div align="center">
-      <i class="fa fa-pencil-square-o iconstyle" aria-hidden="true" style="font-size:200%;margin-left:5%;"></i>
-  </div> -->
-  <br>
-</div>
-  <!-- <div class="iconstyle"><i class="fa fa-arrow-circle-o-right" aria-hidden="true" style="font-size:300%;" ></i><p style="float:left">Signed</p></div>  -->
-  <div class="card3">
-  {{> imageView}}
-</div>
+
+      <!-- <div class="iconstyle"><i class="fa fa-arrow-circle-o-right" aria-hidden="true" style="font-size:300%;" ></i><p style="float:left">Signed</p></div>  -->
+    <div style="margin-top:20%"></div>
+      {{> imageView}}
+    <script type="text/javascript">
+    var showText = function (target, message, index, interval) {   
+      if (index < message.length) {
+        $(target).append(message[index++]);
+        setTimeout(function () { showText(target, message, index, interval); }, interval);
+      }
+    }
+    $(function () {
+
+      showText("#msg2", "Manage your documents", 0, 100);   
+
+    });
+    </script>
 </template>
 
 <template name="imageView">
   <div class="imageView">
-
-    {{#each images}}
-
+    <div class="container" style="margin-left:21%">  
+        <div style="overflow-x:auto;">  
+            <table width="80%">   
+            <col width="20%"> 
+            <col width="30%"> 
+            <col width="20%"> 
+              <thead>
+                <tr>
+                  <th class="textstyle3">Document</th>
+                  <th class="textstyle3">Uploaded at</th>
+                  <th class="textstyle3">Signed by</th>
+                  <th class="textstyle3">Manage</th>
+                </tr>
+              </thead>
+            </table>
+    </div>
+    </div>
+{{#each images}}
      <div>
-        <ul style="float:left;margin-left: 2%;">
+        <ul>
           <br>
-        <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='uploading.pdf' storing='/images/storing.pdf'}}" alt="" class="thumbnail imgsize"/><p style="color:white;" class="box">{{original.name}}</p></a> 
+        <!-- <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='uploading.pdf' storing='/images/storing.pdf'}}" alt="" class="thumbnail imgsize"/><p style="color:white;font-family: yanone kaffeesatz;" class="box">{{original.name}}</p></a>  -->
+        <div class="container card3" align="center" style="margin-left:8%;color:black;">  
+        <div style="overflow-x:auto;"> 
+        <br> 
+            <table width="80%">   
+            <col width="25.5%"> 
+            <col width="35.5%"> 
+            <col width="27.5%"> 
+              <tbody>
+                <tr>
+                  <td><a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='uploading.pdf' storing='/images/storing.pdf'}}" alt="" class="thumbnail imgsize"/><p style="color:black;" class="box">{{original.name}}</p></a></td>
+                  <td>{{uploadedAt}}</td>
+                  <td>Waiting to be signed</td>
+                  <td> 
+                    <button type="button" class="btnpdf" data-toggle="modal" data-target="#myModal"><i class='fa fa-pencil-square-o'></i></button>
+                     <button id="deleteFileButton" class="btnpdf"><i class="fa fa-trash-o"></i></button>
+                  </td>
+                </tr>  
+              </tbody>
+            </table>
+          </div>
+        </div>
         <p id="demo"></p>
-        <button type="button" data-toggle="modal" data-target="#myModal"><i class='fa fa-pencil-square-o'></i></button>
-        <button id="deleteFileButton"><i class="fa fa-trash-o"></i></button>
      <!-- <button type="button" class="btnpdf" data-toggle="modal" data-target="#myModal">
           File
      </button> -->

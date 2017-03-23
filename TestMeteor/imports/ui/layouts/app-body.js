@@ -14,5 +14,5 @@ Template.App_body.events({
   });
 
 Meteor.autorun(function(){
-  $('body').css('background-image','url(images/wood.jpg)');
+  $('body').css('background-color','purple');
 });
