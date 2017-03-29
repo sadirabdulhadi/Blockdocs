@@ -6036,9 +6036,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     },
-    "updated_at": 1488902768681,
+    "updated_at": 1489806283688,
     "links": {},
-    "address": "0x3856953cb5182dbfd1ce4bc846da089ea4944077"
+    "address": "0x6a4fab84d9746194e08a69903d83dad44441b6b4"
   }
 };
 
@@ -6641,9 +6641,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     },
-    "updated_at": 1488902768686,
+    "updated_at": 1489806283694,
     "links": {},
-    "address": "0x36654ed3b469f56da5b03022679a899e89a5e0e2"
+    "address": "0x4d1f014c822551a4f071838d02abfb3382ec73af"
   }
 };
 
@@ -7149,9 +7149,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x6060604052346000575b604c8060156000396000f36504062dabbdf050606060405260e060020a600035046396e4ee3d81146024575b6000565b60306004356024356042565b60408051918252519081900360200190f35b8181025b9291505056",
     "events": {},
-    "updated_at": 1488902768683,
+    "updated_at": 1489806283690,
     "links": {},
-    "address": "0x925c96909aeb2044466b8507347fdf4a23f5456c"
+    "address": "0x6a91d4f7ea83d149f7d6dca895d7bdfd67a1c52e"
   }
 };
 
@@ -7693,7 +7693,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x606060405234610000575b60018054600160a060020a0319166c01000000000000000000000000338102041790819055600160a060020a031660009081526020819052604090206103e890555b5b6101348061005b6000396000f3606060405260e060020a60003504638da5cb5b8114610034578063a9059cbb1461005d578063f8b2cb4f14610084575b610000565b34610000576100416100a6565b60408051600160a060020a039092168252519081900360200190f35b34610000576100706004356024356100b5565b604080519115158252519081900360200190f35b3461000057610094600435610115565b60408051918252519081900360200190f35b600154600160a060020a031681565b600160a060020a033316600090815260208190526040812054829010156100de5750600061010f565b50600160a060020a033381166000908152602081905260408082208054859003905591841681522080548201905560015b92915050565b600160a060020a0381166000908152602081905260409020545b91905056",
     "events": {},
-    "updated_at": 1488902768688,
+    "updated_at": 1489806283699,
     "links": {},
     "address": "0x444f4d6343143eb0855b01aad00d8d4c55a4cb05"
   }
@@ -8287,11 +8287,11 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     },
-    "updated_at": 1488902768691,
+    "updated_at": 1489806283703,
     "links": {
-      "ConvertLib": "0x925c96909aeb2044466b8507347fdf4a23f5456c"
+      "ConvertLib": "0x6a91d4f7ea83d149f7d6dca895d7bdfd67a1c52e"
     },
-    "address": "0x9ad9ca25e5ee58aefb20b94ac6e8df5af64f5e84"
+    "address": "0x4e0580c518104c20dce05e6061724520a181c220"
   }
 };
 
@@ -8832,8 +8832,8 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x606060405234610000575b60008054600160a060020a0319166c01000000000000000000000000338102041790555b5b61014f8061003d6000396000f3606060405260e060020a60003504630900f010811461003f578063445df0ac146100515780638da5cb5b14610070578063fdacd57614610099575b610000565b346100005761004f6004356100ab565b005b346100005761005e610118565b60408051918252519081900360200190f35b346100005761007d61011e565b60408051600160a060020a039092168252519081900360200190f35b346100005761004f60043561012d565b005b6000805433600160a060020a03908116911614156101125781905080600160a060020a031663fdacd5766001546040518260e060020a02815260040180828152602001915050600060405180830381600087803b156100005760325a03f115610000575050505b5b5b5050565b60015481565b600054600160a060020a031681565b60005433600160a060020a039081169116141561014a5760018190555b5b5b5056",
     "events": {},
-    "updated_at": 1488902768694,
-    "address": "0x408985b11e288e36c3040488291b4380be6cd664",
+    "updated_at": 1489806283706,
+    "address": "0x125f01918081d165ae29bc50fd5477d05a5b8af2",
     "links": {}
   }
 };
@@ -9391,9 +9391,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x606060405234610000575b6103d7806100186000396000f3606060405260e060020a60003504634f995d088114610034578063773b82a3146101015780639e7a13ad1461012b575b610000565b3461000057610041610159565b604051808060200180602001806020018481038452878181518152602001915080519060200190602002808383829060006004602084601f0104600302600f01f1509050018481038352868181518152602001915080519060200190602002808383829060006004602084601f0104600302600f01f1509050018481038252858181518152602001915080519060200190602002808383829060006004602084601f0104600302600f01f150905001965050505050505060405180910390f35b34610000576101176004356024356044356102ed565b604080519115158252519081900360200190f35b346100005761013b6004356103a6565b60408051938452602084019290925282820152519081900360600190f35b6040805160208181018352600080835283518083018552818152845180840186528281528551808501875283815286518086018852848152875180870189528581528851606081018a52868152968701869052868901869052855498519798949793969495929491939092919086908059106101d25750595b8181526020808302820101604052905b509450856040518059106101f35750595b8181526020808302820101604052905b509350856040518059106102145750595b8181526020808302820101604052905b509250600091505b858210156102d857600082815481101561000057906000526020600020906003020160005b5060408051606081018252825480825260018401546020830152600290930154918101919091528651909250869084908110156100005760209081029091018101919091528101518451859084908110156100005760209081029091010152604081015183518490849081101561000057602090810290910101525b60019091019061022c565b8484849850985098505b505050505050909192565b6040805160608101825284815260208101849052908101829052600080546001810180835591929183919082818380158290116103645760030281600302836000526020600020918201910161036491905b8082111561036057600080825560018201819055600282015560030161033f565b5090565b5b505050916000526020600020906003020160005b5082518155602083015160018083019190915560408401516002909201919091559250505b509392505050565b600081815481101561000057906000526020600020906003020160005b50805460018201546002909201549092508356",
     "events": {},
-    "updated_at": 1488902768696,
+    "updated_at": 1489806283711,
     "links": {},
-    "address": "0x5b20fee63385f6430c8fdbaeba8e9913afae643c"
+    "address": "0x2775bb72c31e91cc1a6005fe1eb533c1bf714b11"
   }
 };
 
@@ -46666,15 +46666,15 @@ module.exports = transfer;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],315:[function(require,module,exports){
 module.exports = {
-  "BasicSign": require("/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/Systems_Engineering_2/Youtube Tutorial/Truffle part/build/contracts/BasicSign.sol.js"),
-  "ConvertLib": require("/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/Systems_Engineering_2/Youtube Tutorial/Truffle part/build/contracts/ConvertLib.sol.js"),
-  "BestSign": require("/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/Systems_Engineering_2/Youtube Tutorial/Truffle part/build/contracts/BestSign.sol.js"),
-  "HelloWorld": require("/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/Systems_Engineering_2/Youtube Tutorial/Truffle part/build/contracts/HelloWorld.sol.js"),
-  "MetaCoin": require("/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/Systems_Engineering_2/Youtube Tutorial/Truffle part/build/contracts/MetaCoin.sol.js"),
-  "Migrations": require("/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/Systems_Engineering_2/Youtube Tutorial/Truffle part/build/contracts/Migrations.sol.js"),
-  "People": require("/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/Systems_Engineering_2/Youtube Tutorial/Truffle part/build/contracts/People.sol.js"),
+  "BasicSign": require("/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/CodeSamples/Youtube Tutorial/Truffle part/build/contracts/BasicSign.sol.js"),
+  "BestSign": require("/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/CodeSamples/Youtube Tutorial/Truffle part/build/contracts/BestSign.sol.js"),
+  "ConvertLib": require("/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/CodeSamples/Youtube Tutorial/Truffle part/build/contracts/ConvertLib.sol.js"),
+  "HelloWorld": require("/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/CodeSamples/Youtube Tutorial/Truffle part/build/contracts/HelloWorld.sol.js"),
+  "MetaCoin": require("/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/CodeSamples/Youtube Tutorial/Truffle part/build/contracts/MetaCoin.sol.js"),
+  "Migrations": require("/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/CodeSamples/Youtube Tutorial/Truffle part/build/contracts/Migrations.sol.js"),
+  "People": require("/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/CodeSamples/Youtube Tutorial/Truffle part/build/contracts/People.sol.js"),
 };
-},{"/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/Systems_Engineering_2/Youtube Tutorial/Truffle part/build/contracts/BasicSign.sol.js":1,"/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/Systems_Engineering_2/Youtube Tutorial/Truffle part/build/contracts/BestSign.sol.js":2,"/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/Systems_Engineering_2/Youtube Tutorial/Truffle part/build/contracts/ConvertLib.sol.js":3,"/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/Systems_Engineering_2/Youtube Tutorial/Truffle part/build/contracts/HelloWorld.sol.js":4,"/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/Systems_Engineering_2/Youtube Tutorial/Truffle part/build/contracts/MetaCoin.sol.js":5,"/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/Systems_Engineering_2/Youtube Tutorial/Truffle part/build/contracts/Migrations.sol.js":6,"/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/Systems_Engineering_2/Youtube Tutorial/Truffle part/build/contracts/People.sol.js":7}]},{},[315])(315)
+},{"/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/CodeSamples/Youtube Tutorial/Truffle part/build/contracts/BasicSign.sol.js":1,"/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/CodeSamples/Youtube Tutorial/Truffle part/build/contracts/BestSign.sol.js":2,"/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/CodeSamples/Youtube Tutorial/Truffle part/build/contracts/ConvertLib.sol.js":3,"/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/CodeSamples/Youtube Tutorial/Truffle part/build/contracts/HelloWorld.sol.js":4,"/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/CodeSamples/Youtube Tutorial/Truffle part/build/contracts/MetaCoin.sol.js":5,"/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/CodeSamples/Youtube Tutorial/Truffle part/build/contracts/Migrations.sol.js":6,"/Users/Sadir/Documents/Computer_science/Year_2/Blockdocs/CodeSamples/Youtube Tutorial/Truffle part/build/contracts/People.sol.js":7}]},{},[315])(315)
 });
 
 //// TRUFFLE BOOTSTRAP                                          
