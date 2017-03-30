@@ -4,11 +4,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 {{#if currentUser}}
-{{> upload}}
- {{/if}}
+  {{> upload}}
+{{else}}
+  {{> intro}}
+{{/if}}
 
  {{#if isInstitution}}
- <h1> insti </h1>
+ <div align="center" style="margin-top:5%">
+    <img class="img-responsive" src="images/certificate.png">
+  </div>
  {{/if}}
 </template>
 
@@ -69,7 +73,7 @@
 
 
       <!-- <div class="iconstyle"><i class="fa fa-arrow-circle-o-right" aria-hidden="true" style="font-size:300%;" ></i><p style="float:left">Signed</p></div>  -->
-    <div style="margin-top:20%"></div>
+    <div style="margin-top:5%"></div>
       {{> imageView}}
     <script type="text/javascript">
     var showText = function (target, message, index, interval) {   
@@ -134,7 +138,7 @@
                     <tbody>
                       <tr>
                         <td><a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='uploading.pdf' storing='/images/storing.pdf'}}" alt="" class="thumbnail imgsize"/><p style="color:black;" class="box">{{original.name}}</p></a></td>
-                        <td>{{uploadedAt}}</td>
+                        <td class="box">{{uploadedAt}}</td>
                         <td>Waiting to be signed</td>
                         <td> 
                           <button id = "button" type="button" class="btnpdf" data-toggle="modal" data-target="#myModal"><i class='fa fa-pencil-square-o'></i></button>

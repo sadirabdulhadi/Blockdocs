@@ -26,8 +26,6 @@
 
 .brand {
     position: absolute;
-    left: 50%;
-    margin-left: -50px !important;
     display: block;
     width:10%;
 }
@@ -66,7 +64,7 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     width: 30%;
-    height: 230px;
+    height: 300px;
     float:left;
     margin-left: 2%;
     background-color: white;
