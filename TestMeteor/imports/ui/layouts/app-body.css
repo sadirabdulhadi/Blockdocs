@@ -144,6 +144,12 @@
     width: 120px;                 /* fixed width */
 }
 
+.box2 {
+    overflow:hidden;              
+    white-space:nowrap;          
+    width: 168px;                 
+}
+
 .thumbnail:hover{
   width: 70px;
   height:80px;

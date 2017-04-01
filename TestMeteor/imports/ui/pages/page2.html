@@ -38,7 +38,7 @@
                   <td>{{uploadedAt}}</td>
                   <td>Waiting to be signed</td>
                   <td> 
-                    <button type="button" class="btnpdf" data-toggle="modal" data-target="#myModal"><i class='fa fa-pencil-square-o'></i></button>
+                    <button id = "modallaunch" type="button" class="btnpdf" data-toggle="modal" data-target="#myModal"><i class='fa fa-pencil-square-o'></i></button>
                      <button id="deleteFileButton" class="btnpdf"><i class="fa fa-trash-o"></i></button>
                   </td>
                 </tr>  
@@ -59,7 +59,7 @@
 	         <div class="modal-footer">
 	           <button type="button" class="btnpdf" data-dismiss="modal">Close</button>
 	           <!-- <button onclick="myFunction()" class="btnmodal">Request signature</button> -->
-	           <button class="btnpdf" onclick="successful()">Send</button>
+	           <button id = "sign" class="btnpdf" onclick="successful()">Send</button>
 	         </div>
 	       </div>
 	     </div>

@@ -12,6 +12,7 @@ var PCabi = [{"constant":false,"inputs":[{"name":"nonce","type":"string"}],"name
 var PCaddress = '0x7aeddbf80b9f45e541cbf5085b86f4ab7e20246b';
 var dochash = undefined;
 var userFirstName;
+var currentDocumentId = undefined;
 
 Template.page2.helpers({
 //user is institution
@@ -45,18 +46,21 @@ Template.toSignView.helpers({
 });
 
 Template.toSignView.events({
-  'click #button': function () {
+  'click #modallaunch': function () {
+    console.log("hello");
+    currentDocumentId = this;
+    console.log(currentDocumentId);
   },
   'click #notSign': function () {
    },
   'click #sign': function (event) {
     ETHEREUM_CLIENT.eth.defaultAccount = ETHEREUM_CLIENT.eth.accounts[Meteor.user().profile.accounts];
-    var dochash = calculateHash(this);
+    var dochash = calculateHash(currentDocumentId);
     signOnBlockchain(dochash);
     //make sure first name is calculated
     console.log(userFirstName);
-    console.log(this._id);
-    var doc = toSign.find({document_id:this._id, institution:userFirstName}).fetch().map(function(a) {return a._id});
+    console.log(currentDocumentId._id);
+    var doc = toSign.find({document_id:currentDocumentId._id, institution:userFirstName}).fetch().map(function(a) {return a._id});
     console.log(doc);
     for (var i in doc){
       console.log("i is" + doc[i]);

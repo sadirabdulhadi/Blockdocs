@@ -66,6 +66,7 @@ Template.imageView.helpers({
 Template.imageView.events({
   'click #toSign': function () {
     console.log("yay called");
+    console.log(currentDocumentId);
     toSign.insert({
         document_id: currentDocumentId,
         institution: category,
@@ -77,6 +78,7 @@ Template.imageView.events({
       currentDocumentId = this._id;
       console.log("linke here isss" );
       //Blaze.renderWithData(Template.toBeRenderedTemplate, this.url , document.body );
+      console.log(currentDocumentId);
       $('#yourModal').modal('show');
     },
       'click #deleteFileButton ': function (event) {
