@@ -14,5 +14,5 @@ Template.App_body.events({
   });
 
 Meteor.autorun(function(){
-  $('body').css('background-color','purple');
+  $('body').css('background','url(images/back.jpg)');
 });
