@@ -59,6 +59,11 @@ Template.imageView.helpers({
     var imageIds = UserImages.map(function(a) {return a.id;});
     console.log(UserImages);
     return Images.find({_id: {$in: imageIds}}); // Where Images is an FS.Collection instance
+  },
+  signedBy: function (docId) {
+    var x = toSign.find({document_id:docId, signed:1}).fetch().map(function(a) {return a.institution});
+    return x;
+
   }
 });
 

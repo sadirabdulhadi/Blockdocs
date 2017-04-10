@@ -35,7 +35,7 @@ Template.toSignView.helpers({
   images: function () {
     console.log("helloo");
     userFirstName = Meteor.users.find({_id : Meteor.userId()}).fetch()[0].profile.firstName;
-    var UserImages = toSign.find({institution:userFirstName}).fetch();
+    var UserImages = toSign.find({institution:userFirstName, signed:0}).fetch();
     console.log(UserImages);
     var imageIds = UserImages.map(function(a) {return a.document_id;});
     console.log("yoyo");
