@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:200 | Rajdhani:300);
 
 .btnpdf{
   background-color: transparent;
@@ -42,20 +43,31 @@
 /*FONTS*/
 
 .textstyle{
+  /*font-family: Neou;*/
   font-family: Neou;
   font-style: regular;
   color: black; 
+  text-transform: uppercase;
 }
 
 .textstyle2{
+  /*font-family: Neou;*/
   font-family: Neou;
   color:black;
+  text-transform: uppercase;
 }
 
 .textstyle3{
   font-family: Neou;
   font-style: regular;
   color: white; 
+  text-transform: uppercase;
+}
+
+@font-face {
+    font-family: Neou;
+    src: url(fonts/Neou-Thin.otf);
+    font-weight:400;
 }
 
 /* CARDS */
@@ -194,7 +206,20 @@ input[type=text], select {
     color: white;
 }
 
-input[type=password], select {
+input#password[type=password], select {
+    width: 100%;
+    padding: 7px 40px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-style: Neou;
+    background-color: transparent;
+    color: white;
+}
+
+input#confirmPassword[type=password], select {
     width: 100%;
     padding: 7px 40px;
     margin: 8px 0;
@@ -271,4 +296,18 @@ border-right: 1px solid  rgba(0,0,0,0.15);
 }
 .button.twitter {
   background: #4CAF50;
+}
+
+.loader {
+    border: 5px solid #f3f3f3; /* Light grey */
+    border-top: 5px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

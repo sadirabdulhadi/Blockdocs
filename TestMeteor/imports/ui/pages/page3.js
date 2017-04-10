@@ -13,6 +13,7 @@ var PCaddress = '0x7aeddbf80b9f45e541cbf5085b86f4ab7e20246b';
 var dochash = undefined;
 var userFirstName;
 var hash;
+var list = [];
 
 Template.page3.events({
   //upload document on click
@@ -22,16 +23,7 @@ Template.page3.events({
     console.log(files[0]);
     event.preventDefault();
     calculateHash(files);
-    var depdep = ETHEREUM_CLIENT.eth.contract(PCabi).at(PCaddress);
-    var x = depdep.getSignsCount.call("0x9bf0f031d4df49ca5723ee24de36b20a1e8f98b8683b40b4f9ba6949640007ef").c[0];
-    console.log(x);
-    for (var i =0;i<x;i++){
-      console.log("hi");
-      var z = depdep.getSignDetails.call("0x9bf0f031d4df49ca5723ee24de36b20a1e8f98b8683b40b4f9ba6949640007ef",i);
-      console.log(z);
-      var l = ETHEREUM_CLIENT.eth.accounts.indexOf(z);
-      console.log(Meteor.users.find({"profile.accounts":l}).fetch()[0].profile.firstName);
-    }
+    getSign();
     // all the l (one at every iteration) = the name of the person that signed
 
   },
@@ -45,6 +37,7 @@ Template.page3.events({
     });
  }
 });
+
 
 function getBase64(files) {
         //Read File
@@ -74,4 +67,30 @@ function getBase64(files) {
 
 function calculateHash(files){
   getBase64(files);
+}
+
+function getSign(){
+  console.log(hash); 
+    if(hash == undefined){
+      setTimeout(getSign, 1000);
+    }
+    else{
+      console.log(hash);
+      var depdep = ETHEREUM_CLIENT.eth.contract(PCabi).at(PCaddress);
+      var x = depdep.getSignsCount.call(hash).c[0];
+      console.log(x);
+      for (var i =0;i<x;i++){
+      console.log("hi");
+      var z = depdep.getSignDetails.call(hash,i);
+      console.log(z);
+      var l = ETHEREUM_CLIENT.eth.accounts.indexOf(z);
+      var signer = Meteor.users.find({"profile.accounts":l}).fetch()[0].profile.firstName;
+      list.push(signer);
+    }
+    console.log(list);
+    hash = undefined;
+    var myh1 = document.getElementById('Sadir');
+    myh1.textContent = "Signed by " + list
+    return list;
+    }
 }

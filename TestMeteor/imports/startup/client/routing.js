@@ -18,6 +18,14 @@ FlowRouter.route('/page1', {
   }
 });
 
+FlowRouter.route('/', {
+  name: 'Lists.show',
+  action() {
+    console.log("we're here 1!")
+    BlazeLayout.render('App_body', {nav: 'navstd', main: 'page1', footer: 'footstd'});
+  }
+});
+
 FlowRouter.route('/page2', {
   name: 'Lists.show',
   action() {
