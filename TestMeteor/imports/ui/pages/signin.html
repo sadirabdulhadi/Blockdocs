@@ -1,5 +1,7 @@
 <template name="signin">
     {{#if currentUser}}
+    {{#if isInstitution}}
+    {{/if}}
         <h1> You're already signed in! </h1>
     {{else}}
 <!--<<<<<<< HEAD
@@ -13,6 +15,7 @@
   </form>
 
 =======-->
+
     <div align="center" style="margin-top:7%;">
         <p class="textstyle3">Sign in</p>
         <form><!-- create account form, use a different one for normal logging in -->

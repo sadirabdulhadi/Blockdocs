@@ -10,8 +10,26 @@ if (Meteor.isClient) {
         event.preventDefault();
             var passwordVar = template.find('#password').value;
             Meteor.loginWithPassword(template.find('#email').value, passwordVar);
-            console.log("there are" + Meteor.users.find({}).fetch().length + "accounts");
-            FlowRouter.go('/page1');
+            console.log(Meteor.users.find({"emails.address":"sido"}).fetch());
+            // FlowRouter.go('/page1');
         }
   });
+
+  Template.signin.helpers({
+  isInstitution: function() {
+    if(Meteor.user()){
+      console.log(Meteor.user());
+      var isInsti = Meteor.user().profile.powerofsign;
+      console.log(isInsti);
+      if (isInsti==1){
+        FlowRouter.go('/page2');
+        return true;
+      }
+      else {
+         FlowRouter.go('/page1');
+        return false;
+      }
+    }
+  }
+});
 }

@@ -26,16 +26,9 @@ Template.page3.events({
     getSign();
     // all the l (one at every iteration) = the name of the person that signed
 
-  },
+  }
 
-  //sign up button
-  'click #register':function(event,template){
-     Accounts.createUser({
-      email: email,
-      password: password,
-      profile: { homeAddress: homeAddress }
-    });
- }
+  
 });
 
 

@@ -62,8 +62,9 @@ Template.imageView.helpers({
   },
   signedBy: function (docId) {
     var x = toSign.find({document_id:docId, signed:1}).fetch().map(function(a) {return a.institution});
-    return x;
+    var y = toSign.find({document_id:docId, signed:0}).fetch().map(function(a) {return a.institution});
 
+    return "Signed by " + x + "Waiting to be signed by " + y;
   }
 });
 

@@ -7,12 +7,12 @@
     </ul> 
   </div>
   <div class="navbar-collapse collapse">
-   <ul class="nav navbar-nav navbar-right" style="margin-top:10px;">
-      {{> loginButtons align="right"}}
-    </ul>
       
     <ul class="nav navbar-nav navbar-right">
       {{#if currentUser}}
+      <ul class="nav navbar-nav navbar-right" style="margin-top:10px;">
+      {{> loginButtons align="right"}}
+    </ul>
         
       {{else}}
       
