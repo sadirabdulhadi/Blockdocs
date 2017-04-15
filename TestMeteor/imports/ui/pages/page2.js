@@ -51,7 +51,10 @@ Template.toSignView.events({
     currentDocumentId = this;
     console.log(currentDocumentId);
   },
-  'click #notSign': function () {
+  'click #deleteFileButton': function () {
+    console.log(userFirstName);
+    var x = toSign.find({document_id:this._id, institution:userFirstName, signed:0}).fetch()[0]._id;
+    toSign.remove(x);
    },
   'click #sign': function (event) {
     ETHEREUM_CLIENT.eth.defaultAccount = ETHEREUM_CLIENT.eth.accounts[Meteor.user().profile.accounts];
