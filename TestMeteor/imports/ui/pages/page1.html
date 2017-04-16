@@ -3,6 +3,7 @@
   <title>File Upload Progress</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Tangerine">
+  <meta name="viewport" content="initial-scale=1">
 </head>
 {{#if currentUser}}
   {{> upload}}
@@ -20,9 +21,9 @@
 
 
 <template name="intro">
-  <h1 align="center" class="textstyle3" style="font-size: 300%; margin-top:6% " id="msg1"></h1>
+  <h1 align="center" class="textstyle3" style=" margin-top:6% " id="msg1"></h1>
   <div>
-    <p class="textstyle3" align="center" style="font-size: 100%; margin-bottom:4%;">One platform for all your signatures</p>
+    <p class="textstyle4" align="center" style=" margin-bottom:4%;">One platform for all your signatures</p>
     <div align="center">
     <label>
       <a href="http://localhost:3000/page3">
@@ -39,9 +40,9 @@
       <i class="fa fa-upload iconstyle" aria-hidden="true" style="font-size:160%;margin-left:5%;"></i>
     </div>
     <br>
-    <p class="textstyle2" align="center" style="font-size: 120%;">Upload your documents</p>
+    <p class="textstyle2" align="center" >Upload your documents</p>
     <hr width="40%">
-    <p class="textstyle" align="center" style="font-size:110%"> Upload your documents  <br> to be <br> authenticated</p>
+    <p class="textstyle" align="center" > Upload your documents  <br> to <br> authenticate</p>
   </div>
 
   <div class="card">
@@ -51,9 +52,9 @@
       <i class="fa fa-pencil-square-o iconstyle" aria-hidden="true" style="font-size:160%; margin-left:5%;"></i>
     </div>
     <br>
-    <p class="textstyle2" align="center" style="font-size: 120%;">Request a signature</p>
+    <p class="textstyle2" align="center" >Request a signature</p>
     <hr width="40%">
-    <p class="textstyle" align="center" style="font-size:110%"> Find the right institution <br> and <br> send a request</p>
+    <p class="textstyle" align="center" > Find the right institution <br> and <br> send a request</p>
   </div>
   
   <div class="card">
@@ -63,9 +64,9 @@
       <i class="fa fa-inbox iconstyle" aria-hidden="true" style="font-size:160%; margin-left:5%;"></i>
     </div>
     <br>
-    <p class="textstyle2" align="center" style="font-size: 120%;">Receive your signed document</p>
+    <p class="textstyle2" align="center" >Receive your signed document</p>
     <hr width="40%">
-    <p class="textstyle" align="center" style="font-size:110%"> Send your document  <br> when <br> it is signed</p>
+    <p class="textstyle" align="center" > Send your document  <br> when <br> it is signed</p>
   </div>
    <script type="text/javascript">
     var showText = function (target, message, index, interval) {   
@@ -170,7 +171,8 @@
    		</div>
         </ul>
     </div>
-    {{/each}}  
+    {{/each}} 
+    <div style="bottom-margin:3%"></div> 
   </div>
   <script>
   function successful(){

@@ -31,6 +31,12 @@
     width:10%;
 }
 
+.brand2 {
+    position: absolute;
+    display: block;
+    width:150px;
+}
+
 .btn-circle.btn-xl {
   width: 70px;
   height: 70px;
@@ -48,6 +54,7 @@
   font-style: regular;
   color: black; 
   text-transform: uppercase;
+  font-size: 110%;
 }
 
 .textstyle2{
@@ -55,9 +62,18 @@
   font-family: Neou;
   color:black;
   text-transform: uppercase;
+  font-size: 120%;
 }
 
 .textstyle3{
+  font-family: Neou;
+  font-style: regular;
+  color: white; 
+  text-transform: uppercase;
+  font-size: 300%;
+}
+
+.textstyle4{
   font-family: Neou;
   font-style: regular;
   color: white; 
@@ -160,7 +176,7 @@
 .box2 {
     overflow:hidden;              
     white-space:nowrap;          
-    width: 168px;                 
+    width: 166px;                 
 }
 
 .thumbnail:hover{
@@ -184,8 +200,8 @@
   margin-top: 10px;
   border:none;
   color:  #a6a6a6; 
-  font-family: yanone kaffeesatz;
-  font-size: 130%;
+  font-family: Neou;
+
 }
 
 /* SIGNUP */
@@ -311,4 +327,17 @@ border-right: 1px solid  rgba(0,0,0,0.15);
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+/*IMAGE DISAPPEAR*/
+@media screen and (max-width:800px) {  
+  .brand2 {
+    display: none;
+  }
+  .textstyle{
+    font-size: 90%;
+  }
+  .textstyle2{
+    font-size: 100%;
+  }
 }
