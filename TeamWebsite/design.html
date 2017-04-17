@@ -1,0 +1,249 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Design</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1><a href="index.html">Team 16</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="index.html">Home</a></li>
+											<li><a href="about.html">Background</a></li>
+											<li><a href="requirements.html">Requirements</a></li>
+											<li><a href="experiments.html">Experiments</a></li>
+											<li><a href="research.html">Research</a></li>
+											<li><a href="progress.html">Progress</a></li>
+											<li><a href="HCI.html">HCI</a></li>
+											<li><a href="design.html">Design</a></li>
+											<li><a href="testing.html">Testing</a></li>
+											<li><a href="evaluation.html">Evaluation</a></li>
+											<li><a href="management.html">Management</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<article id="main">
+						<header>
+							<h2>Design</h2>
+						</header>
+						<section class="wrapper style5">
+							<div class="inner">
+
+								<h2>System Architecture</h2>
+								<p>Our system includes 3 major components. A server, running the code and connected to MeteorDB database, and an ethereum node (in our case testRPC) where our smart contract resides. The server uses web3.js, an ethereum Javascript API, to interact with the smart contract. The smart contract itself is compiled and deployed by a framework called Truffle.</p>
+								<div align="center">
+								<img src="images/sysarchitecture.png" style="width:70%">
+							</div>
+								<h4 >Database structure</h4>
+								<img src="images/mongodb.jpg" style="width:20%;float:right">
+								
+								<p>Our database is a non-relational NoSQL database, mongoDB, which holds three main collections:<br>
+									<ul>
+									<li>Users (holds information about users)</li>
+									<li>documentsdb (holds information about documents)</li>
+									<li>toSign (holds information about signature requests and made signatures) </li>
+								</p>
+
+								<h4>Users</h4>
+								<p>Example entry:</p>
+								<p>
+									{&quot;_id&quot; : &quot;NJjWHxSFNtvC9jHgm&quot;, &quot;createdAt&quot; : ISODate(&quot;2017-04- 01T17:11:02.806Z&quot;), &quot;services&quot; : { &quot;password&quot; : { &quot;bcrypt&quot; : &quot;$2a$10$nL8JgF0kQnogyIwIPKRTyeVPf/rKWcggG7Mepq9AWoXjcwCgByr/S&quot; }, &quot;resume&quot; : { &quot;loginTokens&quot; : [ ] } }, &quot;emails&quot; : [ { &quot;address&quot; : &quot;email@email.com&quot;, &quot;verified&quot; : false } ], &quot;profile&quot; : { &quot;firstName&quot; : &quot;firstName&quot;, &quot;lastName&quot; : &quot;lastName&quot;, &quot;organization&quot; : &quot;ucl&quot;, &quot;accounts&quot; : 2, &quot;powerofsign&quot; : 1 } }
+								</p>
+								<p>Notes: </p>
+								<p>
+									Although the majority of the fields seem trivial, the role of two important fields should be highlighted:<br>
+<ul>
+<li>accounts holds the number of the associated ethereum wallet. At this moment, it is an integer which refers to the number of the account in testRPC. When our app moves to a true ethereum network, this field would be replaced by two others: the wallets’ public key and private key, so that our authentication system (username and password) would constitute an abstraction for this </li>
+
+<li> power of sign is a flag which says whether a party has the ability to sign documents or not. Setting this flag to 1 can only be done manually by the admin, once the account is verified. 
+For example, if UCL wants to create an account to sign statements of student status, it would need to contact the admin. Only then it is recognised as a body who can sign documents, and it would appear in the list of institutions.</li>
+</ul>
+</p>
+
+								<h4>documentsdb</h4>
+								<p>
+									Example entry: </p>
+									<p>
+									{ &quot;_id&quot; : &quot;hBEsyWTB3YzzP6YMr&quot;, &quot;id&quot; : &quot;DvgpGbBQxSeMNTCv9&quot;, &quot;createdAt&quot; : ISODate(&quot;2017-04- 05T14:07:55.496Z&quot;), &quot;owner&quot; : &quot;NJjWHxSFNtvC9jHgm&quot;,&quot;username&quot; : &quot;email@email.com&quot; }</p>
+								<p>Notes: <p>
+									<ul>
+									<li>When a document is uploaded to our website, it is saved in the server’s local filesystem. An id is prepended to the name with which it is saved, and this id is savedin the id field as well. (The _id field, however, is the entries’ id).</li>
+									<li>The username field is mainly used to display a user’s document by filtering the documentsdb database</li>
+								</ul>
+
+								<h4>toSign</h4>
+								<p>
+									Example entry: </p>
+									<p>
+									{ &quot;_id&quot; : &quot;KssAfGG9vfQtkFaNh&quot;, &quot;document_id&quot; : &quot;dGwdBeFEwfFKvNvQx&quot;,&quot;institution&quot; : &quot;Loubna&quot;, &quot;signed&quot; : 1 }</p>
+								<p>Notes:<p> 
+									<ul>
+									<li>An entry is created in this database whenever a user requests of a party’s signature. This party is referenced to by the institution field, and multiple requests would generate multiple entries. The id of the document to be signed is in the document_id field. </li>
+									<li> Not having a reference to the design requester is a design decision. In fact, the signature on a document should solely depend in its content (in the pdf). Hence, if two people own two copies of the same document, and one of them is authentic then the other one is authentic as well. </li>
+
+									<li> The signed field is first instantiated to 0, meaning the document has been
+									requested to be signed. Once the party signs the document, the signature is
+									done on the blockchain (in our smart contract), and the signed field becomes 1</li>
+								</ul>
+								<h4>Design decisions:</h4>
+								<ul>
+									<li>In accordance with mongoDB’s documentation advise about one to many relationships (one document might have multiple signature)[https://www.mongodb.com/blog/post/6-rules- of-thumb- for-mongodb- schema-design-part- 1], and instead of having arrays of signatures in documentsdb, we decided to create another collection: toSign. Each entry in this last database holds a reference of the document that is/should be signed.</li>
+									<li> Instead of having two collections for normal users and institutions accounts’ respectively, we decided to have one collection with a flag entry to mark whether a user is an institution or not. This decision was made to be able to use Meteor’s very own authentication system</li>
+								</ul>
+								<div align="center">
+								<img src="images/db.png" style="width:70%"></div>
+									<h4>Smart contract</h4>
+									<p>Our smart contract, written is solidity, mainly maintains a hashmap, which hashes a document reference to details about this document. The most important details about this document are: its owner and its signatories, both of them having the format of the public key of an ethereum wallet (ie their ethereum username). The document reference is its sha3 hash.</p>
+									<h4>Web3.js</h4>
+									<p>We used this tool to calculate the sha3 hash of a pdf document (*), and to trigger the smart contract lying in testRPC (referenced by its address and abi)</p>
+									<a href="https://github.com/ethereum/web3.js/">Link to the package</a>
+							<h2>Design Patterns</h2>
+							<p>Because our project is quite unorthodox, as its main value lies in interacting with a smart contract from the front end, and making use of it without complex algorithmic computation or a multitude of classes that interact with each other, our use of design patterns doesn’t completely fit to their definition, as they were sometimes adapted to match our aims.</p>
+
+							<h4>Iterator</h4>
+							<p>The Iterator design pattern is used to access the elements of a collection of objects in sequential manner, and potentially access their attributes. This design pattern has been used in many occasions, including:
+								<br>- Going through the documents of a person, whether to check who signed them or simply to display them 
+								<br>- Displaying the names of institutions who signed a document</p>
+							<h4>Model-View-Controler</h4>
+							<p>The Model – View – Controller (MVC) design pattern divides an application into three separate, but interconnected parts, just like its names says. Using meteor has, indirectly, led us to implementing?? this design with our app. Each page has a view (.html) code which defines its look, a controller (.js) code which accepts input and interactions and executes commands accordingly. The data logic, the model, uses the Meteor libraries.
+								<br>Reference [https://en.wikipedia.org/wiki/Model–view–controller]</p>
+							<h4>Adapter</h4>
+							<p>This design pattern has been mainly used to solve the following problem. The
+
+function which calculates the hash of a document couldn’t be used both when the
+
+document is first uploaded or later. When the document is uploaded, its type is
+
+different from when we store it. Using different functions in different cases was
+
+impossible, as we wanted to get the same hash for the same document. Hence we
+
+needed to create an “adapter” so that the type of the pdf document always matches
+
+what the function expects.</p>
+<h4>Proxy</h4>
+<p>This concept behind this design pattern has been applied in our web app. Querying
+
+data from the Blockchain, as well as other operations we perform (calculating the
+
+hash of a document) are resource-hungry and expensive. That’s why we only
+
+perform these functions in crucial moments, such as when a person checks whether
+
+a document they have at hand is authentic or not.
+
+In other situations (a person checking their list of documents and the signatures of
+
+each), we perform cheap operations, namely querying our mongoDB database,
+
+which keeps a “proxy” of the data in the blockchain.<p/>
+<h4>Null Object</h4>
+<p>We specifically used this design pattern because of different problems we faced. The
+
+modals we were using (when you press on an element in a table) were all getting the
+
+value of the first element in the table. Hence, we needed to set a default (“null”)
+
+value to the modals, and they get their value later on from a global variable which
+
+saves the last element of the table that was pressed.</p>
+<h2>Development tools</h2>
+<h4>Version control</h4>
+<p>Github</p>
+<h4>File Storage</h4>
+<p>As said earlier, files are stored in the servers’ filesystem with their unique id
+
+prepended to their original name.
+
+We used the CollectionFS packages for Meteor to save the files in the filesystem,
+
+and to keep track of them, their id is saved in our documentsdb collection.
+
+The files are saved in the resources directory:
+<img src="images/filestorage.png">
+</p>
+<h4>Communication</h4>
+<p>To communicate in the development process, the team has mainly used a whatsapp group, a facebook group for sending and sharing documents for reference. A google drive directory is where all our files are kept.</p>
+<h4>UI Design</h4>
+<p>Sketches have been first used to design the website. Later, a tool called mobirise helped us in developing our first prototype.</p>
+<h4>IDE</h4>
+<p>The main IDEs we used are VisualStudioCode and Sublime, depending on the preference of the team members.</p>
+<h2>Implementation details of key functionalities</h2>
+<h4>Uploading a document</h4>
+<ul>
+	<li>After having signed in, the user selects their document</li>
+	<li>The hash of the document is calculated (with web3.sha3(base64)), and an
+
+entry with this hash is added to the hashmap in the smart contract (thanks to
+
+web3). It maps the unique reference of the document to its owners’ id (the
+
+user logged in) and the institutions who signed on it (0 for now)</li>
+	<li>An entry in the documentsdb collection is added, corresponding to the
+
+document uploaded</li>
+	<li>The document is also added to the filesystem</li>
+</ul>
+<h4>Requesting a signature</h4>
+<p>An entry is added to the “toSign” collection, with a reference to the document,
+
+a reference to the user who should sign the document, and the flag 0</p>
+<h4>Signing a document</h4>
+<ul>
+	<li>The hash of the document is calculated</li>
+	<li>The flag in the corresponding signature request is set to 1 (which means the
+
+document has been signed)</li>
+	<li>The signatory’s ethereum public key is added to the hashmap in the smart
+
+contract. In particular, the public key is added to the array of keys, “sign”,
+
+referenced to by the hashmap entry of the signed document.</li>
+</ul>
+<a href="https://github.com/CollectionFS/Meteor-CollectionFS">Link to the package we have used</a>
+							</div>
+						</section>
+					</article>
+
+				<!-- Footer -->
+					<footer id="footer"></footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

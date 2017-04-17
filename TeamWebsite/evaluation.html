@@ -1,0 +1,309 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Evaluation</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1><a href="index.html">Team 16</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="index.html">Home</a></li>
+											<li><a href="about.html">Background</a></li>
+											<li><a href="requirements.html">Requirements</a></li>
+											<li><a href="experiments.html">Experiments</a></li>
+											<li><a href="research.html">Research</a></li>
+											<li><a href="progress.html">Progress</a></li>
+											<li><a href="HCI.html">HCI</a></li>
+											<li><a href="design.html">Design</a></li>
+											<li><a href="testing.html">Testing</a></li>
+											<li><a href="evaluation.html">Evaluation</a></li>
+											<li><a href="management.html">Management</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<article id="main">
+						<header>
+							<h2>Evaluation</h2>
+						</header>
+						<section class="wrapper style5">
+							<div class="inner">
+
+								<h2>Requirements, status and contributors</h2>
+								<table style="width:90%; margin-left:5%;">
+								  <tr>
+								    <th>ID</th>
+								    <th>Requirements</th> 
+								    <th>Priority</th>
+								    <th>State</th>
+								    <th>Contributors</th>
+								  </tr>
+								  <tr>
+								    <td>1</td>
+								    <td>Be able to upload a document (a hash of it) to the Blockchain</td> 
+								    <td>Must</td>
+								    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+								    <td>Sadir, Kristelle, Alex</td>
+								  </tr>
+								  <tr>
+								    <td>2</td>
+								    <td>Be able to sign documents, and save signatures on the Blockchain</td> 
+								    <td>Must</td>
+								    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+								    <td>Sadir, Kristelle</td>
+								  </tr>
+								  <tr>
+								    <td>3</td>
+								    <td>Be able to verify the signatures of the document</td> 
+								    <td>Must</td>
+								    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+								    <td>Sadir</td>
+								  </tr>
+								  <tr>
+								    <td>4</td>
+								    <td>User authentication with usernames and passwords</td> 
+								    <td>Must</td>
+								    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+								    <td>Sadir, Kristelle, Alex</td>
+								  </tr>
+								  <tr>
+								    <td>5</td>
+								    <td>Have two user interfaces: one for the regular users who want their documents authenticated,the other for institutions who have the power to legalise documents</td> 
+								    <td>Should</td>
+								    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+								    <td>Sadir, Kristelle</td>
+								  </tr>
+								  <tr>
+								    <td>6</td>
+								    <td>Documents can be signed by more than one person</td> 
+								    <td>Should</td>
+								    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+								    <td>Sadir</td>
+								  </tr>
+								  <tr>
+								    <td>7</td>
+								    <td>Make a scalable product which can be potentially built upon by the open source community</td> 
+								    <td>Could</td>
+								    <td><i class="fa fa-times" aria-hidden="true"></i></td>
+								    <td><i class="fa fa-ban" aria-hidden="true"></i></td>
+								  </tr>
+								  <tr>
+								    <td>8</td>
+								    <td>Automatically implement a piece of code (action) (e.g. release funds) once a document is legalised / signed</td> 
+								    <td>Could</td>
+								    <td><i class="fa fa-times" aria-hidden="true"></i></td>
+								    <td><i class="fa fa-ban" aria-hidden="true"></i></td>
+								  </tr>
+								  <tr>
+								    <td>9</td>
+								    <td>Only predetermined institutions can legalise documents</td> 
+								    <td>Could</td>
+								    <td><i class="fa fa-times" aria-hidden="true"></i></td>
+								    <td><i class="fa fa-ban" aria-hidden="true"></i></td>
+								  </tr>
+								</table>
+								<h2>Challenges and how we solved them</h2>
+								<h4>Challenge #1 – Unknown technologies</h4>
+								<p>Our initial project consisted of coming up with an original idea related to blockchain. Not having an idea about what blockchain is yet needing to come up with a project was really challenging. The only way to overcome this challenge was to do a lot of research, and choose the final idea a bit late in the timeline.</p>
+
+								<h4>Challenge #2 – debugging smart contracts</h4>
+								<p>Debugging smart contract solidity code was quite challenging, as it should be
+
+deployed on testRPC before any testing can be done, and printing variable
+
+values is hard in intermediate stages of the code. That’s because the
+
+technology is quite recent.
+
+To overcome this problem, we have divided our code into very specific small
+
+functions, and the return value of each could be printed. This has helped us
+
+locate the bugs.</p>
+
+								<h4>Challenge #3 – Keeping the database and the blockchain is sync</h4>
+								<p>This is a very hard task, and we needed to design our website architecture
+
+carefully, especially that we are dealing with sensitive data.
+
+After failing in solving the problem, we have overcome the challenge by
+
+designing our website in way that no wrong/corrupted data can be written to
+
+the blockchain, and where decisive and important functions would check the
+
+blockchain directly without relying on the mongoDB database. In other terms,
+
+we segregated the important data from the non-important ones.</p>
+
+
+								<h4>Challenge #4 – Reducing computation in the smart contracts, as it’s expensive</h4>
+								<p>
+									Computation in the smart contracts costs “gas”, which means money if the
+
+website was deployed on the the true blockchain network. To minimise the
+
+gas spending, we have moved all the expensive computation outside the
+
+smart contract (e.g. calculating the hash of a document)
+								</p>
+
+								<h4>Challenge #5 – Slow querying of the blockchain/smart contract</h4>
+								
+								<p>Because asking for information from the blockchain is quite slow, and we
+
+sometimes need instant information to fill in a table with a big number of
+
+documents, we needed to find an alternative way to get data. That’s why we
+
+initially created the mongoDB database as a “proxy” to the info in the
+
+blockchain, and which be queried faster.</p>
+
+
+								<h2>Incomplete features and bugs</h2>
+								<p>All the main features were successfully implemented. The only functions that could
+
+have been implemented would have been email notifications, and an automatic
+
+action specified by the user which happens once the document is signed.
+
+Some minor bugs still exist:
+
+- Performing actions very fast might mean that some program parts are not
+
+executed
+
+- Front end elements not being well responsive
+
+- No type checking: e.g. A non valid email can be entered in an email field
+
+That’s because our main priority in the website was given the web app architecture
+
+and linking elements together, and fixing these small bugs is relatively time
+
+consuming and wouldn’t allow us to have a secure and functioning system</p>
+
+								<h2>Work package distribution</h2>
+								<table style="width:90%; margin-left:5%;">
+								  <tr>
+								    <th>Criteria</th>
+								    <th>Description</th> 
+								  </tr>
+								  <tr>
+								    <td>Architecture Design</td>
+								    <td>The architecture design is functionally and logically good. Some improvement which can be done are a component which makes sure that the different other components are synced, and which resolves issues if any comes to surface.</td> 
+								    </tr>			    		
+								    <tr>
+								    <td>User interface design and user experience</td>
+								    <td>The user interface has been iteratively changed and improved after receiving comments and feedback from people around us. The final version makes the user experience relatively pleasant. Some minor improvements can be done, but because of the limitations of meteor compared to other frameworks, we have chosen different alternatives.</td> 
+								  </tr>
+								  <tr>
+								    <td>Functionality</td>
+								    <td>The web app is functionally successfull. It does all the functions it's supposed to</td> 
+								  </tr>
+								  <tr>
+								    <td>Stability</td>
+								    <td>With the testing frameworks we are using, the app is stable. The functions are deterministic, and exceptions are only thrown whenever its expected. However, once deployed, stability might be a problem as the blockchain technologies themselves are not very stable.</td> 
+								  </tr>
+								  <tr>
+								    <td>Efficiency</td>
+								    <td>The app is relatively efficient. Computationally expensive functions have been moved out of the smart contracts to maximize the efficiency. The bottleneck remains the blockchain queries, but they are efficient enough for the purpose of our app.</td> 
+								    
+								  </tr>
+								  <tr>
+								    <td>Compatibility</td>
+								    <td>The app doesn’t have major compatibility problems, because the unique services we’ll be using will be deployed on a virtual machine compatible with them.</td> 
+								  </tr>
+								  <tr>
+								    <td>Maintanability</td>
+								    <td>The web app has an organised structure, which means it is easily maintanable and scalable</td> 
+								    
+								  </tr>
+								  <tr>
+								    <td>Evaluation of testing</td>
+								    <td>Unit testing and user acceptance testing were done well. The
+
+major problems we faced was doing integration testing on a
+
+meteor blockchain app, so we relied for some functionalities on
+
+the user acceptance testing.</td> 
+								  </tr>
+								  <tr>
+								    <td>Project management</td>
+								    <td>The initial allocation of tasks and responsibilities was done
+
+according to each person’s strengths and interests. However,
+
+because different team members had different interests and levels
+
+of knowledge, the work wasn’t split very evenly.</td> 
+								    
+								  </tr>
+								</table>
+								<h2>Future work</h2>
+								<p>Since we were allocated a disruptive project with a novel technology and not a lot of
+
+resources, we are aware that our app can be improved in many ways. Our future
+
+work would include:<br>- Fixing the bugs stated earlier
+
+<br>- Moving the smart contract to a real ethereum network rather than testRPC
+
+<br>- Deploying the web app without affecting its speed and efficiency<br>
+Later, we can move on to adding new features, such as:
+<br>
+- Adding notifications and an authentication system<br>
+
+- Making the service for money (as transactions on the blockchain are not for<br>
+
+free)
+</p>
+
+							</div>
+						</section>
+					</article>
+
+				<!-- Footer -->
+					<footer id="footer"></footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
