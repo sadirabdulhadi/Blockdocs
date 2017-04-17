@@ -28,7 +28,14 @@ Template.page3.events({
 
   }
 
-  
+  //sign up button
+//   'click #register':function(event,template){
+//      Accounts.createUser({
+//       email: email,
+//       password: password,
+//       profile: { homeAddress: homeAddress }
+//     });
+//  }
 });
 
 
@@ -84,6 +91,7 @@ function getSign(){
     hash = undefined;
     var myh1 = document.getElementById('Sadir');
     myh1.textContent = "Signed by " + list
+    list = [];
     return list;
     }
 }

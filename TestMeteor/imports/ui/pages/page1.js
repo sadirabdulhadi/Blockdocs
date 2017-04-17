@@ -173,3 +173,7 @@ getUserId = function(){
   console.log(Meteor.userId());
   return Meteor.userId();
 }
+
+sadir = function(){
+  return "yay";
+}
