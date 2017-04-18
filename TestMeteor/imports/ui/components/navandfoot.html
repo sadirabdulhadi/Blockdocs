@@ -1,0 +1,64 @@
+<template name = "navstd">
+<div class="navbar navbar-default" role="navigation">
+
+   <div class="navbar-header" >
+   <ul class="nav navbar-nav navbar-left">
+      <li class="active" > <img class=" brand2" id="imglogo" src="images/blockdocslogo.png"></li>
+    </ul> 
+  </div>
+   
+    <ul class="nav navbar-nav navbar-right" style="padding-right: 50px;padding-left: 50px;">
+     
+    {{#if isInstitution}}
+      <label for="Verify Document" >
+       <form action="http://localhost:3000/page3">
+          <input class="logoutbtn" type="submit" value="Verify Document" id="signin"/>
+        </form>
+     </label>
+      <label for="home" >
+       <form action="http://localhost:3000/sign">
+          <input class="logoutbtn" type="submit" value="Home" id="home"/>
+        </form>
+     </label>
+     {{else}}
+    <label for="Verify Document" >
+       <form action="http://localhost:3000/page3">
+          <input class="logoutbtn" type="submit" value="Verify Document" id="signin"/>
+        </form>
+     </label>
+     <label for="home" >
+       <form action="http://localhost:3000/documents">
+          <input class="logoutbtn" type="submit" value="Home" id="home"/>
+        </form>
+     </label>
+     {{/if}}
+     
+
+      {{#if currentUser}}
+      <ul class="nav navbar-nav navbar-right" style="margin-top:10px;">
+      {{> loginButtons align="right"}}
+       </ul>
+        
+      {{else}}
+      <label for="signin" >
+       <form action="http://localhost:3000/signin">
+          <input class="logoutbtn" type="submit" value="Signin" id="signin"/>
+        </form>
+     </label>
+     <label for="signup" >
+        <form action="http://localhost:3000/signup">
+          <input class="logoutbtn" type="submit" value="Signup" id="signup" />
+        </form>
+     </label>
+   
+      {{/if}}
+    </ul>
+
+   
+
+</div>
+</template>
+
+<template name = "footstd">
+  <!-- <div class="footer"></div> -->
+</template>

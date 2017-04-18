@@ -1,0 +1,37 @@
+<template name="signin">
+    {{#if currentUser}}
+    {{#if isInstitution}}
+    {{/if}}
+        <h1> You're already signed in! </h1>
+    {{else}}
+<!--<<<<<<< HEAD
+        <input type="text" id="firstName" placeholder="First Name">
+        <input type="text" id="lastName" placeholder="Last Name">
+        <input type="text" id="organization" placeholder="Organization (optional)">
+        <input type="text" id="email" placeholder="Email Address">
+        <input type="password" id="password" placeholder="Password">
+        <input type="password" id="confirmPassword" placeholder="Confirm Password">
+        <input type="submit" id="createAccount" value="Create Account">
+  </form>
+
+=======-->
+
+    <div align="center" style="margin-top:7%;">
+        <p class="textstyle3" style="font-size:200%">Sign in</p>
+        <form><!-- create account form, use a different one for normal logging in -->
+            <label for="email">
+                <input type="text" id="email" placeholder="*Email Address" class="change">
+            </label>
+            <br>
+            <label for="password">
+                <input type="password" id="password" placeholder="*Password" class="change" >
+            </label>
+            <br>
+            <label for="createAccount">
+                 <input type="submit" id="createAccount" value="Sign in" class ="change">
+            </label>
+        </form>
+    </div>
+
+    {{/if}}
+</template>

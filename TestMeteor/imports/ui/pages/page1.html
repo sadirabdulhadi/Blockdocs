@@ -1,0 +1,192 @@
+<template name ="page1">
+    <head>
+  <title>File Upload Progress</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Tangerine">
+  <meta name="viewport" content="initial-scale=1">
+</head>
+{{#if currentUser}}
+  {{> upload}}
+{{else}}
+  {{> intro}}
+{{/if}}
+
+ {{#if isInstitution}}
+ <div align="center" style="margin-top:5%">
+    <img class="img-responsive" src="images/certificate.png">
+  </div>
+ {{/if}}
+</template>
+
+
+
+<template name="intro">
+  <h1 align="center" class="textstyle3" style=" margin-top:6% " id="msg1"></h1>
+  <div>
+    <p class="textstyle4" align="center" style=" margin-bottom:4%;">One platform for all your signatures</p>
+    <div align="center">
+    <label>
+      <a href="http://localhost:3000/page3">
+      <buton class="button twitter"><span><i class="fa fa-upload" aria-hidden="true"></i></span><p>Check file authenticity</p></buton> 
+    </a> 
+    </label>
+  </div>
+  </div>
+
+  <div class="card">
+    <br>
+    <br>
+    <div align="center">
+      <i class="fa fa-upload iconstyle" aria-hidden="true" style="font-size:160%;margin-left:5%;"></i>
+    </div>
+    <br>
+    <p class="textstyle2" align="center" >Upload your documents</p>
+    <hr width="40%">
+    <p class="textstyle" align="center" > Upload your documents  <br> to <br> authenticate</p>
+  </div>
+
+  <div class="card">
+    <br>
+    <br>
+    <div align="center">
+      <i class="fa fa-pencil-square-o iconstyle" aria-hidden="true" style="font-size:160%; margin-left:5%;"></i>
+    </div>
+    <br>
+    <p class="textstyle2" align="center" >Request a signature</p>
+    <hr width="40%">
+    <p class="textstyle" align="center" > Find the right institution <br> and <br> send a request</p>
+  </div>
+  
+  <div class="card">
+    <br>
+    <br>
+    <div align="center">
+      <i class="fa fa-inbox iconstyle" aria-hidden="true" style="font-size:160%; margin-left:5%;"></i>
+    </div>
+    <br>
+    <p class="textstyle2" align="center" >Receive your signed document</p>
+    <hr width="40%">
+    <p class="textstyle" align="center" > Send your document  <br> when <br> it is signed</p>
+  </div>
+   <script type="text/javascript">
+    var showText = function (target, message, index, interval) {   
+      if (index < message.length) {
+        $(target).append(message[index++]);
+        setTimeout(function () { showText(target, message, index, interval); }, interval);
+      }
+    }
+    $(function () {
+
+      showText("#msg1", "Notarisation made easy", 0, 100);   
+
+    });
+    </script>
+</template>
+
+
+<template name="upload">
+   <h1 align="center" class="textstyle3" style="font-size: 300%; margin-top:6% " id="msg2"></h1>
+  <form style="float:center;">
+  <!-- <input class="upload" type="file" id="upload" name=".../"> -->
+  <div style="margin-bottom:5%;"></div>
+  <!-- <p class="textstyle2" align="center">Upload a new PDF file</p> -->
+   
+  <div align="center">
+    <label>
+      <buton class="button twitter"><span><i class="fa fa-upload" aria-hidden="true"></i></span><p>Upload file</p></buton> <input style="display:none" type="file" class="upload" id="upload" name=".../" accept="application/pdf,application/vnd.ms-excel" />
+    </label>
+  </div>
+  </form>
+
+
+      <!-- <div class="iconstyle"><i class="fa fa-arrow-circle-o-right" aria-hidden="true" style="font-size:300%;" ></i><p style="float:left">Signed</p></div>  -->
+    <div style="margin-top:5%"></div>
+      {{> imageView}}
+    <script type="text/javascript">
+    var showText = function (target, message, index, interval) {   
+      if (index < message.length) {
+        $(target).append(message[index++]);
+        setTimeout(function () { showText(target, message, index, interval); }, interval);
+      }
+    }
+    $(function () {
+
+      showText("#msg2", "Manage your documents", 0, 100);   
+
+    });
+    </script>
+</template>
+
+<template name="imageView">
+  <div class="imageView">
+
+
+{{#each images}}
+     <div>
+        <ul>
+          <br>
+      
+            <div class="container card3" align="center" style="margin-left:8%;color:black;">  
+              <div style="overflow-x:auto;"> 
+              <br> 
+                  <table width="80%">   
+                  <col width="25.5%"> 
+                  <col width="35.5%"> 
+                  <col width="27.5%"> 
+
+                    <tbody>
+                      <tr>
+                      
+                        <td><a href="{{this.url}}" target="_blank"><object data="{{this.url}}#page=1&toolbar=0" class="thumbnail imgsize" type='application/pdf' ></object><p style="color:black;" class="box">{{original.name}}</p></a></td>
+                        <td><p class="box2">{{uploadedAt}}</p></td>
+                        <td>{{signedBy this._id}} <br/> <br/>{{waitingBy this._id}}</td>
+                        <td> 
+                          <button id = "button" type="button" class="btnpdf" data-toggle="modal" data-target="#myModal"><i class='fa fa-pencil-square-o'></i></button>
+                          <button id="deleteFileButton" class="btnpdf"><i class="fa fa-trash-o"></i></button>
+                        </td>
+                      </tr>  
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+        <p id="demo"></p>
+  
+      	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	     <div class="modal-dialog" role="document">
+	       <div class="modal-content">
+	         <div class="modal-header">
+	           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	           <h4 class="modal-title" id="myModalLabel">Request signature</h4>
+	         </div>
+	         <div class="modal-body">
+	         <p>Choose the institution you want to send your signature request to:</p>
+	          {{> categories}}
+             </div>
+	         <div class="modal-footer">
+	           <button type="button" class="btnpdf" data-dismiss="modal">Close</button>
+	           <button class="btnpdf" data-dismiss="modal" id="toSign">Send</button>
+	         </div>
+	       </div>
+	     </div>
+   		</div>
+        </ul>
+    </div>
+    {{/each}} 
+    <div style="bottom-margin:3%"></div> 
+  </div>
+  <script>
+  function successful(){
+   swal("Request sent!", "Your file was successfully sent!", "success");
+}
+</script>
+
+</template>
+
+<template name="categories">
+	<select id="category-select" style="color:black">
+    <option disabled="disabled" selected="selected">Please Select</option> 
+    {{#each categories}}
+        <option value="{{this}}">{{this}}</option>
+    {{/each}}
+</select>
+</template>
