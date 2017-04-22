@@ -21,7 +21,7 @@ if (Meteor.isClient) {
                   firstName: template.find('#firstName').value,
                   lastName: template.find('#lastName').value,
                   accounts: Meteor.users.find({}).fetch().length,
-                  powerofsign : 1
+                  powerofsign : 0
                 }
             });
             console.log("there are" + Meteor.users.find({}).fetch().length + "accounts")

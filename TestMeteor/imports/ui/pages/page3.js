@@ -14,13 +14,14 @@ var dochash = undefined;
 var userFirstName;
 var hash;
 var list = [];
+var filo ;
 
 Template.page3.events({
   //upload document on click
   'change .upload': function(event, template) {
 
     var files = event.target.files;
-    console.log(files[0]);
+    filo = files[0].name;
     event.preventDefault();
     calculateHash(files);
     getSign();
@@ -92,10 +93,10 @@ function getSign(){
     hash = undefined;
     var myh1 = document.getElementById('Sadir');
     if (list.length == 0){
-      myh1.textContent = "No one has signed your document";
+      myh1.innerHTML = "No one has signed your document, "+ filo;
     }
     else{
-      myh1.textContent = "The uploaded document has been signed by " + readableList(uniq(list));
+      myh1.innerHTML =  "The uploaded document <b>" + filo  + "</b> <br/>has been signed by " + readableList(uniq(list));
     }
     list = [];
     return list;
