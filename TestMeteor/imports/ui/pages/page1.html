@@ -136,8 +136,7 @@
 
                     <tbody>
                       <tr>
-                      
-                        <td><a href="{{this.url}}" target="_blank"><object data="{{this.url}}#page=1&toolbar=0" class="thumbnail imgsize" type='application/pdf' ></object><p style="color:black;" class="box">{{original.name}}</p></a></td>
+                        <td><a href="{{this.url}}" target="_blank"><object data="{{this.url}}#toolbar=0&amp;navpanes=0&amp;scrollbar=0&amp;page=1&amp;view=Fit&amp;zoom=scale&amp;" class="thumbnail imgsize" type='application/pdf' ></object><p style="color:black;" class="box">{{original.name}}</p></a></td>
                         <td><p class="box2">{{uploadedAt}}</p></td>
                         <td>{{signedBy this._id}} <br/> <br/>{{waitingBy this._id}}</td>
                         <td> 
@@ -171,8 +170,10 @@
    		</div>
         </ul>
     </div>
+    
     {{/each}} 
-    <div style="bottom-margin:3%"></div> 
+    <div style="margin-top:3%"></div> 
+    
   </div>
   <script>
   function successful(){
