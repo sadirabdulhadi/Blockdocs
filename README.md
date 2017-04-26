@@ -17,7 +17,9 @@ https://www.meteor.com/install
 
 1. After installing testRPC, run the testrpc command on terminal.
 
-```testrpc```
+```
+testrpc
+```
 
 2.On another terminal, go to the “Truffle Part” directory.
 Write the following on terminal:
