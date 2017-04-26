@@ -7,7 +7,7 @@ import { Meteor } from 'meteor/meteor';
 var ETHEREUM_CLIENT = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 ETHEREUM_CLIENT.eth.defaultAccount = ETHEREUM_CLIENT.eth.accounts[0];
 var PCabi = [{"constant":false,"inputs":[{"name":"nonce","type":"string"}],"name":"generateId","outputs":[{"name":"","type":"bytes32"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes32"}],"name":"documents","outputs":[{"name":"organizer","type":"address"}],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"SimpleSign","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"docId","type":"bytes32"},{"name":"signId","type":"uint8"}],"name":"getSignDetails","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"docId","type":"bytes32"}],"name":"addSignature","outputs":[],"payable":true,"type":"function"},{"constant":false,"inputs":[{"name":"docId","type":"bytes32"}],"name":"getDocumentDetails","outputs":[{"name":"organizer","type":"address"},{"name":"count","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"docId","type":"bytes32"}],"name":"getDocumentOrganizer","outputs":[{"name":"organizer","type":"address"},{"name":"count","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"docId","type":"bytes32"},{"name":"index","type":"uint256"}],"name":"getDocumentSignature","outputs":[{"name":"value","type":"address"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"docId","type":"bytes32"}],"name":"removeDocument","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"dochash","type":"bytes32"}],"name":"createDocument","outputs":[{"name":"docId","type":"bytes32"}],"payable":true,"type":"function"},{"constant":false,"inputs":[{"name":"docId","type":"bytes32"}],"name":"getSignsCount","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"payable":false,"type":"fallback"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":false,"name":"id","type":"bytes32"}],"name":"Created","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":false,"name":"docId","type":"bytes32"}],"name":"Signed","type":"event"}];
-var PCaddress = '0x7aeddbf80b9f45e541cbf5085b86f4ab7e20246b';
+var PCaddress = '0x30650f8af76fdced6c19c94cbaa466b6e0d01939';
 var hash = undefined;
 var category = undefined;
 var currentDocumentId = undefined;
@@ -61,10 +61,23 @@ Template.imageView.helpers({
     return Images.find({_id: {$in: imageIds}}); // Where Images is an FS.Collection instance
   },
   signedBy: function (docId) {
-    var x = toSign.find({document_id:docId, signed:1}).fetch().map(function(a) {return a.institution});
-    var y = toSign.find({document_id:docId, signed:0}).fetch().map(function(a) {return a.institution});
 
-    return "Signed by " + x + "Waiting to be signed by " + y;
+    var x = toSign.find({document_id:docId, signed:1}).fetch().map(function(a) {return a.institution});
+    console.log(x);
+    if (x.length==0){
+      return "- Not signed by anyone"
+    }
+
+    return "- Signed by " + readableList(uniq(x));
+  },
+    waitingBy: function (docId) {
+    var y = toSign.find({document_id:docId, signed:0}).fetch().map(function(a) {return a.institution});
+    
+    if (y.length==0){
+      return "- Not waiting to be signed by anyone"
+    }
+
+    return "- Waiting to be signed by " + readableList(uniq(y));
   }
 });
 
@@ -78,7 +91,6 @@ Template.imageView.events({
         institution: category,
         signed: 0
         });
-    category = undefined;
   },
     'click #button': function () {
       currentDocumentId = this._id;
@@ -176,4 +188,33 @@ getUserId = function(){
 
 sadir = function(){
   return "yay";
+}
+
+function readableList(list){
+  var x = list.length;
+  console.log(list);
+  if (x==1){
+    return list;
+  }
+  else{
+    if (x==2){
+      return list[0] + " and " + list[1]
+    }
+    else{
+      var stringo = "";
+      for (var i =0; i<x-2; i++){
+        stringo = stringo + list[i]+ ", ";
+        console.log (stringo);
+      }
+      stringo = stringo + list[x-2] + " and " + list[x-1];
+      return stringo;
+    }
+  }
+}
+
+function uniq(a) {
+    var seen = {};
+    return a.filter(function(item) {
+        return seen.hasOwnProperty(item) ? false : (seen[item] = true);
+    });
 }

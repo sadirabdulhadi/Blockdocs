@@ -10,7 +10,7 @@ import '../../ui/pages/signup.js'
 import '../../ui/components/navandfoot.js'
 
 
-FlowRouter.route('/page1', {
+FlowRouter.route('/documents', {
   name: 'Lists.show',
   action() {
     console.log("we're here 1!")
@@ -26,7 +26,7 @@ FlowRouter.route('/', {
   }
 });
 
-FlowRouter.route('/page2', {
+FlowRouter.route('/sign', {
   name: 'Lists.show',
   action() {
     console.log("we're here!")

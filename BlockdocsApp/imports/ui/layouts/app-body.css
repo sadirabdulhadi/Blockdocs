@@ -1,5 +1,26 @@
 @import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:200 | Rajdhani:300);
 
+.change::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color:white;
+}
+.change:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color:white;
+    opacity: 1;
+}
+.change::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color:white;
+    opacity: 1;
+}
+.change:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color:white;
+}
+input[type="text"]{
+
+}
 .btnpdf{
   background-color: transparent;
   background-repeat:no-repeat;
@@ -12,8 +33,8 @@
 }
 
 .imgsize{
-	width:60px;
-  height: 70px;
+  width:70px;
+  height: 90px;
   padding:1px;
   border:2px solid black;
 }
@@ -29,6 +50,12 @@
     position: absolute;
     display: block;
     width:10%;
+}
+
+.brand2 {
+    position: absolute;
+    display: block;
+    width:150px;
 }
 
 .btn-circle.btn-xl {
@@ -48,6 +75,7 @@
   font-style: regular;
   color: black; 
   text-transform: uppercase;
+  font-size: 110%;
 }
 
 .textstyle2{
@@ -55,9 +83,18 @@
   font-family: Neou;
   color:black;
   text-transform: uppercase;
+  font-size: 120%;
 }
 
 .textstyle3{
+  font-family: Neou;
+  font-style: regular;
+  color: white; 
+  text-transform: uppercase;
+  font-size: 300%;
+}
+
+.textstyle4{
   font-family: Neou;
   font-style: regular;
   color: white; 
@@ -67,6 +104,11 @@
 @font-face {
     font-family: Neou;
     src: url(fonts/Neou-Thin.otf);
+    font-weight:400;
+}
+@font-face {
+    font-family: Lane-Narrow;
+    src: url(fonts/LANENAR_.ttf);
     font-weight:400;
 }
 
@@ -116,8 +158,8 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     width: 80%;
-    height: 150px;
-    float:left;
+    height: 180px;
+    /*float:left;*/
     background-color: white;
 }
 
@@ -164,8 +206,10 @@
 }
 
 .thumbnail:hover{
-  width: 70px;
-  height:80px;
+  width: 90px;
+  height:100px;
+    /*width: 70px;
+  height:80px;*/
 }
 
 .footer {
@@ -184,8 +228,8 @@
   margin-top: 10px;
   border:none;
   color:  #a6a6a6; 
-  font-family: yanone kaffeesatz;
-  font-size: 130%;
+  font-family: Neou;
+
 }
 
 /* SIGNUP */
@@ -311,4 +355,17 @@ border-right: 1px solid  rgba(0,0,0,0.15);
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+/*IMAGE DISAPPEAR*/
+@media screen and (max-width:800px) {  
+  .brand2 {
+    display: none;
+  }
+  .textstyle{
+    font-size: 90%;
+  }
+  .textstyle2{
+    font-size: 100%;
+  }
 }
