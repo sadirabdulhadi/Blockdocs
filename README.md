@@ -27,14 +27,17 @@ truffle compile
 truffle build
 truffle migrate
 truffle console
-x = BasicSign.deployed()```
-```JSON.stringify(x.abi) ```(Copy and paste the value somewhere. It’s the smart contract’s abi)
-```x.address ```(Copy and paste the value somewhere. It’s the smart contract’s address)
+x = BasicSign.deployed()
+JSON.stringify(x.abi)(Copy and paste the value somewhere. It’s the smart contract’s abi)
+x.address(Copy and paste the value somewhere. It’s the smart contract’s address)
+```
 
 3. To run the code, open the code saved in BlockdocsApp directory, and modify all the occurrences of PCabi and PCaddress to the abit and the address you got earlier. (The occurrences are in the files located at  BlockdocsApp/imports/ui/pages)
 
 4. Now, on a new terminal, go to the BlockdocsApp directory, and write
-```meteor```
+```
+meteor
+```
 
 
 ## Notes
